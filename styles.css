@@ -349,6 +349,7 @@ ul {
 
 .info-icon {
     font-size: 2rem;
+    color: var(--color-gold);
 }
 
 .event-benefits {
