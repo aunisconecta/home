@@ -839,20 +839,45 @@ ul {
         font-size: 1.8rem;
     }
 
+    .fixed-bar {
+        padding: 5px 0;
+    }
+
     .fixed-bar .container {
         flex-direction: column;
-        gap: 15px;
+        gap: 8px;
         text-align: center;
-        padding-top: 10px;
+        padding-top: 5px;
     }
 
     .nav-logo img {
-        height: 35px !important;
+        height: 30px !important;
+        margin: 0 auto;
+    }
+
+    .nav-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+
+    .pulse-text {
+        display: none;
+        /* Hide extra text to save space on small screens */
+    }
+
+    .timer-mini {
+        font-size: 1rem;
+        white-space: nowrap;
     }
 
     .fixed-bar .btn {
-        width: 100%;
-        max-width: 300px;
+        width: auto;
+        padding: 8px 15px;
+        font-size: 0.85rem;
     }
 
     .footer-bottom .container {
