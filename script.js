@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', toggleFixedBar);
 
     // 3. Countdown Timer Logic
-    const countdownDate = new Date("March 25, 2026 08:00:00").getTime();
+    const countdownDate = new Date("March 11, 2026 23:59:59").getTime();
 
     const updateTimer = () => {
         const now = new Date().getTime();
         const distance = countdownDate - now;
 
         if (distance < 0) {
-            document.getElementById("timer-mini").innerHTML = "EVENTO INICIADO";
+            document.getElementById("timer-mini").innerHTML = "LOTE ENCERRADO";
             document.getElementById("days").innerHTML = "00";
             document.getElementById("hours").innerHTML = "00";
             document.getElementById("mins").innerHTML = "00";

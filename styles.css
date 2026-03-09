@@ -1,13 +1,19 @@
 /* CSS Variables */
 :root {
-    --color-red: #D6BB80; /* Burlywood */
-    --color-red-dark: #A08348; /* Dark Tan */
-    --color-black: #182A3A; /* Yankees Blue */
-    --color-black-light: #425B6F; /* Deep Space Sparkle */
+    --color-red: #D6BB80;
+    /* Burlywood */
+    --color-red-dark: #A08348;
+    /* Dark Tan */
+    --color-black: #182A3A;
+    /* Yankees Blue */
+    --color-black-light: #425B6F;
+    /* Deep Space Sparkle */
     --color-white: #FFFFFF;
     --color-white-dim: #E2E8F0;
-    --color-gold: #D6BB80; /* Burlywood */
-    --color-gold-light: #A08348; /* Dark Tan */
+    --color-gold: #D6BB80;
+    /* Burlywood */
+    --color-gold-light: #A08348;
+    /* Dark Tan */
 
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
@@ -214,9 +220,20 @@ ul {
 
 .fixed-bar .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-actions {
+    display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.nav-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 .pulse-text {
@@ -515,8 +532,20 @@ ul {
     box-shadow: 0 20px 40px rgba(214, 187, 128, 0.2);
 }
 
-.pricing-card.premium {
-    border-color: var(--color-gold);
+.pricing-card.blur-tier {
+    border-color: var(--glass-border);
+    opacity: 0.8;
+}
+
+.pricing-card.blur-tier .price {
+    filter: blur(8px);
+    user-select: none;
+    pointer-events: none;
+}
+
+.pricing-card.blur-tier:hover {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
 .popular-badge {
