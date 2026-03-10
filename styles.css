@@ -397,6 +397,14 @@ ul {
     align-items: center;
 }
 
+.speaker-grid.reversed .speaker-image {
+    order: 2;
+}
+
+.speaker-grid.reversed .speaker-content {
+    order: 1;
+}
+
 .image-wrapper {
     position: relative;
     border-radius: 20px;
@@ -823,6 +831,14 @@ ul {
     .pricing-card.premium {
         grid-column: 1;
         max-width: 100%;
+    }
+
+    .speaker-grid.reversed .speaker-image {
+        order: 1;
+    }
+
+    .speaker-grid.reversed .speaker-content {
+        order: 2;
     }
 
     .countdown-large {
