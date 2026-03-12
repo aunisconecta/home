@@ -32,19 +32,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', toggleFixedBar);
 
-    // 3. Countdown Timer Logic
-    const countdownDate = new Date("March 11, 2026 23:59:59").getTime();
+    // 3. Automated Lote Transition & Countdown Logic
+    const LOTES = [
+        { id: 1, end: "2026-03-15T23:59:59", link: "https://pay.sumup.com/b2c/QI3ZWCYT", name: "1º Lote" },
+        { id: 2, end: "2026-03-20T23:59:59", link: "https://pay.sumup.com/b2c/QHHGZGFP", name: "2º Lote" },
+        { id: 3, end: "2026-03-25T23:59:59", link: "https://pay.sumup.com/b2c/QBKDD65A", name: "Lote Final" }
+    ];
+
+    let currentLoteIndex = 0;
+    let countdownDate = new Date(LOTES[0].end).getTime();
+
+    const updateLotesUI = () => {
+        const now = new Date().getTime();
+        
+        // Find current active lote
+        let activeIndex = -1;
+        for (let i = 0; i < LOTES.length; i++) {
+            const loteEnd = new Date(LOTES[i].end).getTime();
+            if (now < loteEnd) {
+                activeIndex = i;
+                break;
+            }
+        }
+
+        // If all lotes expired
+        if (activeIndex === -1) {
+            document.getElementById("timer-mini").innerHTML = "VENDAS ENCERRADAS";
+            return;
+        }
+
+        currentLoteIndex = activeIndex;
+        countdownDate = new Date(LOTES[activeIndex].end).getTime();
+
+        // Update UI for each card
+        LOTES.forEach((lote, index) => {
+            const card = document.getElementById(`card-lote-${lote.id}`);
+            const btn = document.getElementById(`btn-lote-${lote.id}`);
+            const waitBtn = document.getElementById(`wait-lote-${lote.id}`);
+            const fixedBtn = document.getElementById("fixed-cta-btn");
+
+            if (index < activeIndex) {
+                // Past lote
+                card.style.opacity = "0.5";
+                card.classList.remove('highlighted');
+                if (btn) btn.style.display = "none";
+                if (waitBtn) {
+                    waitBtn.style.display = "block";
+                    waitBtn.innerText = "LOTE ENCERRADO";
+                }
+            } else if (index === activeIndex) {
+                // Active lote
+                card.style.opacity = "1";
+                card.classList.add('highlighted');
+                if (btn) {
+                    btn.style.display = "block";
+                    btn.classList.add('pulse');
+                    btn.classList.remove('btn-outline');
+                    btn.classList.add('btn-primary');
+                }
+                if (waitBtn) waitBtn.style.display = "none";
+                
+                // Update fixed bar CTA link to current lote
+                if (fixedBtn) {
+                    fixedBtn.href = lote.link;
+                    fixedBtn.innerText = `Garantir Ingresso (${lote.name})`;
+                }
+            } else {
+                // Future lote
+                card.style.opacity = "0.7";
+                card.classList.remove('highlighted');
+                if (btn) btn.style.display = "none";
+                if (waitBtn) {
+                    waitBtn.style.display = "block";
+                    waitBtn.innerText = "Aguardando Virada";
+                }
+            }
+        });
+    };
 
     const updateTimer = () => {
         const now = new Date().getTime();
         const distance = countdownDate - now;
 
         if (distance < 0) {
-            document.getElementById("timer-mini").innerHTML = "LOTE ENCERRADO";
-            document.getElementById("days").innerHTML = "00";
-            document.getElementById("hours").innerHTML = "00";
-            document.getElementById("mins").innerHTML = "00";
-            document.getElementById("secs").innerHTML = "00";
+            updateLotesUI(); // Re-check lotes when one ends
             return;
         }
 
@@ -65,5 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     setInterval(updateTimer, 1000);
+    updateLotesUI();
     updateTimer(); // Initial call
 });

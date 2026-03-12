@@ -26,8 +26,8 @@
             </div>
             <div class="nav-actions">
                 <span class="pulse-text">Vagas Limitadas!</span>
-                <span class="timer-mini" id="timer-mini">00:00:00:00</span>
-                <a href="#tickets" class="btn btn-small">Garanta Seu Ingresso</a>
+                <div id="timer-mini" class="timer-mini">00d 00h 00m 00s</div>
+                <a href="#tickets" id="fixed-cta-btn" class="btn btn-primary">Garantir Ingresso</a>
             </div>
         </div>
     </div>
@@ -230,12 +230,12 @@
 
             <div class="pricing-grid">
                 <!-- Lote 1 -->
-                <div class="pricing-card highlighted reveal">
+                <div id="card-lote-1" class="pricing-card highlighted reveal">
                     <div class="popular-badge">Mais Escolhido</div>
                     <div class="card-header">
                         <h3>1º Lote – Early Connection</h3>
                         <div class="price">R$ 298<span class="cents">,00</span></div>
-                        <p class="price-desc">Válido apenas até 11 de março</p>
+                        <p class="price-desc" id="desc-lote-1">Válido até 15 de março</p>
                     </div>
                     <div class="card-body">
                         <ul class="benefits-list">
@@ -247,39 +247,38 @@
                         </ul>
                     </div>
                     <div class="card-footer">
-                        <a href="https://pay.sumup.com/b2c/QI3ZWCYT" class="btn btn-primary pulse"
+                        <a href="https://pay.sumup.com/b2c/QI3ZWCYT" id="btn-lote-1" class="btn btn-primary pulse"
                             target="_blank">Garantir
-                            Ingresso (1º Lote)</a>
+                            Ingresso</a>
                     </div>
                 </div>
 
                 <!-- Lote 2 -->
-                <div class="pricing-card reveal delay-1" style="opacity: 0.85;">
+                <div id="card-lote-2" class="pricing-card reveal delay-1" style="opacity: 0.85;">
                     <div class="card-header">
                         <h3>2º Lote – Networking Access</h3>
                         <div class="price">R$ 348<span class="cents">,00</span></div>
-                        <p class="price-desc">De 12 a 18 de março</p>
+                        <p class="price-desc" id="desc-lote-2">De 16 a 20 de março</p>
                     </div>
                     <div class="card-body">
                         <p class="text-center" style="margin-top: 15px; color: var(--color-gold); font-weight: 600;">O
                             nível da sala vai aumentar.</p>
                         <p class="text-center"
-                            style="margin-top: 10px; font-size: 0.95rem; color: var(--color-white-dim);">A partir de 12
-                            de março, o investimento para acessar esse ecossistema será maior. Garanta o 1º Lote e saia
-                            na frente.</p>
+                            style="margin-top: 10px; font-size: 0.95rem; color: var(--color-white-dim);">A partir de 16
+                            de março, o investimento para acessar esse ecossistema será maior. Garanta o seu lugar hoje.</p>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-outline" disabled style="opacity: 0.5; cursor: not-allowed;">Aguardando
-                            Virada</button>
+                        <a href="https://pay.sumup.com/b2c/QHHGZGFP" id="btn-lote-2" class="btn btn-outline" target="_blank" style="display: none;">Garantir Ingresso</a>
+                        <button id="wait-lote-2" class="btn btn-outline" disabled style="opacity: 0.5; cursor: not-allowed; width: 100%;">Aguardando Virada</button>
                     </div>
                 </div>
 
                 <!-- Lote 3 -->
-                <div class="pricing-card reveal delay-2" style="opacity: 0.7;">
+                <div id="card-lote-3" class="pricing-card reveal delay-2" style="opacity: 0.7;">
                     <div class="card-header">
                         <h3>Lote Final – Últimas Cadeiras</h3>
                         <div class="price">R$ 398<span class="cents">,00</span></div>
-                        <p class="price-desc">De 19 a 26 de março</p>
+                        <p class="price-desc" id="desc-lote-3">De 21 a 25 de março</p>
                     </div>
                     <div class="card-body">
                         <p class="text-center" style="margin-top: 15px; color: var(--color-red); font-weight: 600;">
@@ -290,8 +289,8 @@
                             ingresso. Não fique de fora.</p>
                     </div>
                     <div class="card-footer">
-                        <button class="btn btn-outline" disabled style="opacity: 0.5; cursor: not-allowed;">Aguardando
-                            Lote Final</button>
+                        <a href="https://pay.sumup.com/b2c/QBKDD65A" id="btn-lote-3" class="btn btn-outline" target="_blank" style="display: none;">Garantir Ingresso</a>
+                        <button id="wait-lote-3" class="btn btn-outline" disabled style="opacity: 0.5; cursor: not-allowed; width: 100%;">Aguardando Virada</button>
                     </div>
                 </div>
             </div>
