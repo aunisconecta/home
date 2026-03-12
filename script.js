@@ -34,9 +34,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Automated Lote Transition & Countdown Logic
     const LOTES = [
-        { id: 1, end: "2026-03-15T23:59:59", link: "https://pay.sumup.com/b2c/QI3ZWCYT", name: "1º Lote" },
-        { id: 2, end: "2026-03-20T23:59:59", link: "https://pay.sumup.com/b2c/QHHGZGFP", name: "2º Lote" },
-        { id: 3, end: "2026-03-25T23:59:59", link: "https://pay.sumup.com/b2c/QBKDD65A", name: "Lote Final" }
+        { 
+            id: 1, 
+            end: "2026-03-15T23:59:59", 
+            link: "https://pay.sumup.com/b2c/QI3ZWCYT", 
+            name: "1º Lote",
+            price: "298,00",
+            pix: "00020126730014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0221AUNIS Jkabreueventos 5204000053039865406298.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU202603120457338265166326304625A"
+        },
+        { 
+            id: 2, 
+            end: "2026-03-20T23:59:59", 
+            link: "https://pay.sumup.com/b2c/QHHGZGFP", 
+            name: "2º Lote",
+            price: "348,00",
+            pix: "00020126650014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0213AUNIS Jkabreu5204000053039865406348.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU20260312135903043378632630409EB"
+        },
+        { 
+            id: 3, 
+            end: "2026-03-25T23:59:59", 
+            link: "https://pay.sumup.com/b2c/QBKDD65A", 
+            name: "Lote Final",
+            price: "398,00",
+            pix: "00020126650014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0213AUNIS Jkabreu5204000053039865406398.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU2026031214015242822263263041024"
+        }
     ];
 
     let currentLoteIndex = 0;
@@ -92,7 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.classList.remove('btn-outline');
                     btn.classList.add('btn-primary');
                 }
-                if (pixBtn) pixBtn.style.display = "block";
+                if (pixBtn) {
+                    pixBtn.style.display = "block";
+                    pixBtn.onclick = () => openPixModal(lote);
+                }
                 if (waitBtn) waitBtn.style.display = "none";
                 
                 // Update fixed bar CTA to scroll to tickets instead of direct link
@@ -149,13 +173,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. PIX Modal Logic
     const pixModal = document.getElementById('pix-modal');
-    const btnPixLote1 = document.getElementById('btn-pix-lote-1');
+    const pixPriceEl = pixModal.querySelector('p strong');
+    const pixCodeEl = document.getElementById('pix-code');
     const btnCopyPix = document.getElementById('btn-copy-pix');
     const closeModal = document.querySelector('.close-modal');
     const copyStatus = document.getElementById('copy-status');
 
-    if (btnPixLote1) {
-        btnPixLote1.onclick = () => pixModal.classList.add('active');
+    function openPixModal(lote) {
+        pixPriceEl.innerText = `R$ ${lote.price}`;
+        pixCodeEl.innerText = lote.pix;
+        pixModal.classList.add('active');
     }
 
     if (closeModal) {
@@ -170,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnCopyPix) {
         btnCopyPix.onclick = () => {
-            const pixValue = document.getElementById('pix-code').textContent.trim();
+            const pixValue = pixCodeEl.textContent.trim();
             navigator.clipboard.writeText(pixValue).then(() => {
                 copyStatus.innerText = "Código copiado com sucesso!";
                 btnCopyPix.innerText = "Copiado!";
