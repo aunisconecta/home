@@ -651,6 +651,9 @@ ul {
 
 .card-footer {
     padding: 0 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .card-footer .btn {
