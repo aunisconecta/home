@@ -95,9 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (pixBtn) pixBtn.style.display = "block";
                 if (waitBtn) waitBtn.style.display = "none";
                 
-                // Update fixed bar CTA link to current lote
+                // Update fixed bar CTA to scroll to tickets instead of direct link
                 if (fixedBtn) {
-                    fixedBtn.href = lote.link;
+                    fixedBtn.href = "#tickets";
                     fixedBtn.innerText = `Garantir Ingresso (${lote.name})`;
                 }
             } else {
