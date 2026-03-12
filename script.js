@@ -99,6 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (fixedBtn) {
                     fixedBtn.href = "#tickets";
                     fixedBtn.innerText = `Garantir Ingresso (${lote.name})`;
+                    fixedBtn.onclick = (e) => {
+                        e.preventDefault();
+                        document.querySelector('#tickets').scrollIntoView({ behavior: 'smooth' });
+                    };
                 }
             } else {
                 // Future lote
