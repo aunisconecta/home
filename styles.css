@@ -940,3 +940,86 @@ ul {
         font-size: 0.7rem;
     }
 }
+
+/* PIX Payment Styles */
+.btn-pix {
+    margin-top: 10px;
+    background: rgba(50, 190, 166, 0.1);
+    color: #32bea6;
+    border: 1px solid #32bea6;
+    width: 100%;
+}
+
+.btn-pix:hover {
+    background: #32bea6;
+    color: var(--color-black);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--color-black-light);
+    margin: auto;
+    padding: 30px;
+    border: 1px solid var(--color-gold);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    animation: modalReveal 0.3s ease-out;
+}
+
+@keyframes modalReveal {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: var(--color-white-dim);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--color-white);
+}
+
+.pix-code-box {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    word-break: break-all;
+    font-family: monospace;
+    font-size: 0.85rem;
+    border: 1px dashed var(--color-white-dim);
+}
+
+.copy-status {
+    color: #32bea6;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    height: 20px;
+}

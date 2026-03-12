@@ -248,8 +248,8 @@
                     </div>
                     <div class="card-footer">
                         <a href="https://pay.sumup.com/b2c/QI3ZWCYT" id="btn-lote-1" class="btn btn-primary pulse"
-                            target="_blank">Garantir
-                            Ingresso</a>
+                            target="_blank">Garantir Ingresso</a>
+                        <button id="btn-pix-lote-1" class="btn btn-pix">Pagar com PIX</button>
                     </div>
                 </div>
 
@@ -356,6 +356,22 @@
             </div>
         </div>
     </footer>
+
+    <!-- PIX Modal -->
+    <div id="pix-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="text-gold">Pagar com PIX</h2>
+            <p>Copie o código abaixo e cole no seu aplicativo do banco para finalizar o pagamento de <strong>R$ 298,00</strong>.</p>
+            
+            <div id="pix-code" class="pix-code-box">00020126730014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0221AUNIS Jkabreueventos 5204000053039865406298.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU202603120457338265166326304625A</div>
+            
+            <button id="btn-copy-pix" class="btn btn-primary">Copiar Código PIX</button>
+            <div id="copy-status" class="copy-status"></div>
+            
+            <p style="margin-top: 20px; font-size: 0.85rem; color: var(--color-white-dim);">Após o pagamento, envie o comprovante para o nosso WhatsApp de suporte.</p>
+        </div>
+    </div>
 
     <script src="./script.js"></script>
 </body>

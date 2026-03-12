@@ -70,12 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById(`btn-lote-${lote.id}`);
             const waitBtn = document.getElementById(`wait-lote-${lote.id}`);
             const fixedBtn = document.getElementById("fixed-cta-btn");
+            const pixBtn = document.getElementById(`btn-pix-lote-${lote.id}`);
 
             if (index < activeIndex) {
                 // Past lote
                 card.style.opacity = "0.5";
                 card.classList.remove('highlighted');
                 if (btn) btn.style.display = "none";
+                if (pixBtn) pixBtn.style.display = "none";
                 if (waitBtn) {
                     waitBtn.style.display = "block";
                     waitBtn.innerText = "LOTE ENCERRADO";
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.classList.remove('btn-outline');
                     btn.classList.add('btn-primary');
                 }
+                if (pixBtn) pixBtn.style.display = "block";
                 if (waitBtn) waitBtn.style.display = "none";
                 
                 // Update fixed bar CTA link to current lote
@@ -102,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.opacity = "0.7";
                 card.classList.remove('highlighted');
                 if (btn) btn.style.display = "none";
+                if (pixBtn) pixBtn.style.display = "none";
                 if (waitBtn) {
                     waitBtn.style.display = "block";
                     waitBtn.innerText = "Aguardando Virada";
@@ -138,4 +142,39 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateTimer, 1000);
     updateLotesUI();
     updateTimer(); // Initial call
+
+    // 4. PIX Modal Logic
+    const pixModal = document.getElementById('pix-modal');
+    const btnPixLote1 = document.getElementById('btn-pix-lote-1');
+    const btnCopyPix = document.getElementById('btn-copy-pix');
+    const closeModal = document.querySelector('.close-modal');
+    const copyStatus = document.getElementById('copy-status');
+
+    if (btnPixLote1) {
+        btnPixLote1.onclick = () => pixModal.classList.add('active');
+    }
+
+    if (closeModal) {
+        closeModal.onclick = () => pixModal.classList.remove('active');
+    }
+
+    window.onclick = (event) => {
+        if (event.target == pixModal) {
+            pixModal.classList.remove('active');
+        }
+    }
+
+    if (btnCopyPix) {
+        btnCopyPix.onclick = () => {
+            const pixValue = document.getElementById('pix-code').innerText;
+            navigator.clipboard.writeText(pixValue).then(() => {
+                copyStatus.innerText = "Código copiado com sucesso!";
+                btnCopyPix.innerText = "Copiado!";
+                setTimeout(() => {
+                    copyStatus.innerText = "";
+                    btnCopyPix.innerText = "Copiar Código PIX";
+                }, 3000);
+            });
+        };
+    }
 });
