@@ -98,7 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.opacity = "0.5";
                 card.classList.remove('highlighted');
                 if (btn) btn.style.display = "none";
-                if (pixBtn) pixBtn.style.display = "none";
+                if (pixBtn) {
+                    pixBtn.style.display = "block";
+                    pixBtn.style.opacity = "0.3";
+                    pixBtn.style.pointerEvents = "none";
+                    pixBtn.onclick = null;
+                }
                 if (waitBtn) {
                     waitBtn.style.display = "block";
                     waitBtn.innerText = "LOTE ENCERRADO";
@@ -115,6 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (pixBtn) {
                     pixBtn.style.display = "block";
+                    pixBtn.style.opacity = "1";
+                    pixBtn.style.pointerEvents = "auto";
                     pixBtn.onclick = () => openPixModal(lote);
                 }
                 if (waitBtn) waitBtn.style.display = "none";
@@ -133,7 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.opacity = "0.7";
                 card.classList.remove('highlighted');
                 if (btn) btn.style.display = "none";
-                if (pixBtn) pixBtn.style.display = "none";
+                if (pixBtn) {
+                    pixBtn.style.display = "block";
+                    pixBtn.style.opacity = "0.3";
+                    pixBtn.style.pointerEvents = "none";
+                    pixBtn.onclick = null;
+                }
                 if (waitBtn) {
                     waitBtn.style.display = "block";
                     waitBtn.innerText = "Aguardando Virada";
