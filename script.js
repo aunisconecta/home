@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnCopyPix) {
         btnCopyPix.onclick = () => {
-            const pixValue = document.getElementById('pix-code').innerText;
+            const pixValue = document.getElementById('pix-code').textContent.trim();
             navigator.clipboard.writeText(pixValue).then(() => {
                 copyStatus.innerText = "Código copiado com sucesso!";
                 btnCopyPix.innerText = "Copiado!";
