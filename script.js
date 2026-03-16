@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const LOTES = [
         { 
             id: 1, 
-            end: "2026-03-15T23:59:59", 
+            end: "2026-03-18T23:59:59", 
             link: "https://pay.sumup.com/b2c/QI3ZWCYT", 
             name: "1º Lote",
             price: "298,00",
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         { 
             id: 2, 
-            end: "2026-03-20T23:59:59", 
+            end: "2026-03-22T23:59:59", 
             link: "https://pay.sumup.com/b2c/QHHGZGFP", 
             name: "2º Lote",
             price: "348,00",
