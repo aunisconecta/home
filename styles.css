@@ -610,6 +610,42 @@ ul {
     font-weight: 500;
 }
 
+/* Speaker Social Layout */
+.speaker-social-box {
+    margin-top: 15px;
+}
+
+.btn-speaker-social {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 24px;
+    background: rgba(214, 187, 128, 0.1);
+    border: 1px solid var(--color-gold);
+    color: var(--color-white);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.btn-speaker-social svg {
+    color: var(--color-gold);
+    transition: var(--transition-fast);
+}
+
+.btn-speaker-social:hover {
+    background: var(--color-gold);
+    color: var(--color-black);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(214, 187, 128, 0.3);
+}
+
+.btn-speaker-social:hover svg {
+    color: var(--color-black);
+}
+
 /* Results Section */
 .results-section {
     background: linear-gradient(to bottom, var(--color-black), var(--color-black-light));
