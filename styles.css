@@ -302,10 +302,12 @@ ul {
 
 .hero-speaker img {
     width: 100%;
-    max-width: 450px;
+    max-width: 500px; /* Increase max-size since they are transparent now */
     height: auto;
     display: block;
-    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 0 30px rgba(0,0,0,0.6));
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
 }
 
 .hero-speaker.left img {
