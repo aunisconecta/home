@@ -297,6 +297,8 @@ ul {
     width: auto;
     display: block;
     filter: drop-shadow(0 0 50px rgba(0,0,0,0.6));
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .speaker-left {
