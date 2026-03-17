@@ -60,6 +60,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    const OFFERS = {
+        duo: {
+            id: 'duo',
+            name: "Combo Duo (2 Ingressos)",
+            price: "496,00",
+            link: "https://pay.sumup.com/b2c/QNPGDJAF",
+            pix: "00020126710014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0219AUNISconectaeventos5204000053039865406496.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU202603171148128792436326304B7D7"
+        }
+    };
+
     let currentLoteIndex = 0;
     let countdownDate = new Date(LOTES[0].end).getTime();
 
@@ -84,6 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentLoteIndex = activeIndex;
         countdownDate = new Date(LOTES[activeIndex].end).getTime();
+
+        // Update Duo PIX button
+        const duoPixBtn = document.getElementById("btn-pix-duo");
+        if (duoPixBtn) {
+            duoPixBtn.onclick = () => openPixModal(OFFERS.duo);
+        }
 
         // Update UI for each card
         LOTES.forEach((lote, index) => {

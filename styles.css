@@ -696,10 +696,19 @@ ul {
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-top: 50px;
     align-items: stretch;
+}
+
+.pricing-card.special-offer {
+    border: 2px solid var(--color-gold);
+}
+
+.popular-badge.gold {
+    background: var(--color-gold);
+    color: var(--color-black);
 }
 
 .pricing-card {
@@ -961,6 +970,12 @@ ul {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 1024px) {
     .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
