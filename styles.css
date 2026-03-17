@@ -696,19 +696,60 @@ ul {
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
     margin-top: 50px;
     align-items: stretch;
 }
 
-.pricing-card.special-offer {
-    border: 2px solid var(--color-gold);
+/* Internal Duo Offer Box */
+.duo-offer-internal {
+    margin-top: 25px;
+    padding: 15px;
+    background: rgba(214, 187, 128, 0.1);
+    border: 1px dashed var(--color-gold);
+    border-radius: 10px;
+    text-align: center;
 }
 
-.popular-badge.gold {
-    background: var(--color-gold);
-    color: var(--color-black);
+.duo-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.duo-price-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.old-price {
+    font-size: 0.9rem;
+    color: var(--color-white-dim);
+    text-decoration: line-through;
+}
+
+.new-price {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-white);
+}
+
+.duo-btns {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 8px;
+}
+
+.btn-sm {
+    padding: 10px 10px !important;
+    font-size: 0.8rem !important;
 }
 
 .pricing-card {
@@ -970,12 +1011,6 @@ ul {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-    .pricing-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 1024px) {
     .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
