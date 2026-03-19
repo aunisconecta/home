@@ -122,19 +122,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitForm = () => {
         // Collect Data
         const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        data.timestamp = new Date().toISOString();
+        const data = {};
+        
+        // Handle multiple values (checkboxes like 'desafios')
+        for (let [key, value] of formData.entries()) {
+            if (data[key]) {
+                if (!Array.isArray(data[key])) {
+                    data[key] = [data[key]];
+                }
+                data[key].push(value);
+            } else {
+                data[key] = value;
+            }
+        }
+        data.timestamp = new Date().toLocaleString('pt-BR');
 
         // Show Loading Screen
         formSection.style.display = 'none';
         loadingScreen.style.display = 'flex';
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Simulate Analysis & Webhook Submission
-        setTimeout(() => {
-            // Trigger webhook (Placeholder URL - replace with real Google Apps Script URL)
-            // fetch('YOUR_WEBHOOK_URL', { method: 'POST', body: JSON.stringify(data) });
+        // A URL será preenchida assim que o usuário enviá-la
+        const WEBHOOK_URL = "";
 
+        // Send Data to Google Sheets Webhook without blocking the UI
+        if (WEBHOOK_URL) {
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Evita bloqueios de CORS do Google Apps Script
+                headers: {
+                    'Content-Type': 'text/plain', // Mime correto para não-cors script
+                },
+                body: JSON.stringify(data)
+            }).catch(console.error);
+        }
+
+        // Simula análise de 3 segundos para a experiência do usuário
+        setTimeout(() => {
             loadingScreen.style.display = 'none';
             successContainer.style.display = 'block';
             
