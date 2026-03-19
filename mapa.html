@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mapa de Oportunidades - AUNIS Conecta. Mapeamento estratégico para networking de alto nível.">
+    <title>Mapa de Oportunidades | AUNIS Conecta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css?v=6">
+    <style>
+        /* Specific styles for the Mapa page that aren't in the main styles.css yet */
+        body {
+            background-color: #0c151d;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mapa-header {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .mapa-logo {
+            max-width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .mapa-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .mapa-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto 20px;
+            padding: 0 20px;
+        }
+
+        .progress-bar-bg {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #ff0000, #d6bb80);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 100px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .step-block {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .step-block.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .block-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #d6bb80;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .block-title span {
+            background: rgba(214, 187, 128, 0.1);
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1rem;
+            border: 1px solid rgba(214, 187, 128, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #d6bb80;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Card Select Styles */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .select-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            user-select: none;
+        }
+
+        .select-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .select-card.selected {
+            border-color: #d6bb80;
+            background: rgba(214, 187, 128, 0.1);
+            box-shadow: 0 0 20px rgba(214, 187, 128, 0.1);
+        }
+
+        .select-card input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .card-label {
+            font-weight: 600;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        /* Navigation Buttons */
+        .form-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            gap: 20px;
+        }
+
+        .btn-nav {
+            padding: 18px 40px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn-prev {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
+            min-width: 150px;
+        }
+
+        .btn-prev:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .btn-next {
+            background: #ff0000;
+            border: none;
+            color: #fff;
+            flex-grow: 1;
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4);
+            background: #e60000;
+        }
+
+        .btn-submit {
+            background: #d6bb80;
+            color: #000;
+            border: none;
+            flex-grow: 1;
+            box-shadow: 0 5px 15px rgba(214, 187, 128, 0.2);
+        }
+
+        .btn-submit:hover {
+            background: #c5a96d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(214, 187, 128, 0.4);
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0c151d;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner-container {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(214, 187, 128, 0.1);
+            border-top: 4px solid #d6bb80;
+            border-radius: 50%;
+            animation: spin 1.5s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Success Screen */
+        #success-container {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #d6bb80;
+            margin-bottom: 40px;
+            animation: pulse-gold 2s infinite;
+        }
+
+        @keyframes pulse-gold {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+        .success-subtitle {
+            font-size: 1.4rem;
+            color: #d6bb80;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .success-text {
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto 50px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .success-text ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .success-text li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .success-text li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #d6bb80;
+            font-weight: bold;
+        }
+
+        .success-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .btn-gold {
+            background: #d6bb80;
+            color: #000;
+        }
+
+        .btn-gold:hover {
+            background: #fff;
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline-white {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+        }
+
+        .btn-outline-white:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .mapa-title { font-size: 1.8rem; }
+            .mapa-header { padding: 30px 15px; }
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .form-nav { flex-direction: column; }
+            .btn-prev { order: 2; min-width: 100%; }
+            .btn-next { order: 1; width: 100%; }
+            .success-title { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-section">
+        <header class="mapa-header">
+            <img src="https://i.ibb.co/Kzcspycr/auniswwhi.png" alt="Aunis Conecta" class="mapa-logo">
+            <h1 class="mapa-title">Mapa de Oportunidades do Mercado</h1>
+            <p class="mapa-subtitle">Queremos entender quem estará presente neste ambiente para gerar conexões mais estratégicas, oportunidades reais de negócio e experiências de alto valor.</p>
+        </header>
+
+        <div class="progress-container">
+            <div class="progress-bar-bg">
+                <div id="progress-fill" class="progress-bar-fill"></div>
+            </div>
+            <div class="progress-text">
+                <span>Progresso Estratégico</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+
+        <main class="form-container">
+            <form id="mapa-form">
+                <!-- BLOCO 1 — Identificação -->
+                <div class="step-block active" data-step="1">
+                    <h2 class="block-title"><span>01</span> Identificação</h2>
+                    <div class="form-group">
+                        <label class="form-label">Nome Completo</label>
+                        <input type="text" name="nome" class="form-input" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Empresa / Marca</label>
+                        <input type="text" name="empresa" class="form-input" placeholder="Nome da sua empresa" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Qual o seu cargo?</label>
+                        <div class="cards-grid">
+                            <label class="select-card">
+                                <input type="radio" name="cargo" value="CEO/Sócio" required>
+                                <span class="card-icon">💼</span>
+                                <span class="card-label">CEO / Sócio</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="cargo" value="Diretor/Gestor">
+                                <span class="card-icon">🎯</span>
+                                <span class="card-label">Diretor / Gestor</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="cargo" value="Profissional Liberal">
+                                <span class="card-icon">🚀</span>
+                                <span class="card-label">Profissional Liberal</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="cargo" value="Outro">
+                                <span class="card-icon">✨</span>
+                                <span class="card-label">Outro</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Cidade / Estado</label>
+                        <input type="text" name="localizacao" class="form-input" placeholder="Ex: Goiânia - GO" required>
+                    </div>
+                </div>
+
+                <!-- BLOCO 2 — Segmento -->
+                <div class="step-block" data-step="2">
+                    <h2 class="block-title"><span>02</span> Segmento de Atuação</h2>
+                    <div class="form-group">
+                        <label class="form-label">Qual o seu setor?</label>
+                        <div class="cards-grid">
+                            <label class="select-card">
+                                <input type="radio" name="segmento" value="Tecnologia" required>
+                                <span class="card-label">Tecnologia</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="segmento" value="Saúde">
+                                <span class="card-label">Saúde</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="segmento" value="Agronegócio">
+                                <span class="card-label">Agronegócio</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="segmento" value="Varejo">
+                                <span class="card-label">Varejo / Comércio</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="segmento" value="Educação">
+                                <span class="card-label">Educação</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="segmento" value="Outros">
+                                <span class="card-label">Outros</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tempo de empresa</label>
+                        <div class="cards-grid">
+                            <label class="select-card">
+                                <input type="radio" name="tempo_empresa" value="Menos de 1 ano" required>
+                                <span class="card-label">< 1 ano</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="tempo_empresa" value="1 a 3 anos">
+                                <span class="card-label">1 - 3 anos</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="tempo_empresa" value="3 a 10 anos">
+                                <span class="card-label">3 - 10 anos</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="tempo_empresa" value="Mais de 10 anos">
+                                <span class="card-label">> 10 anos</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 3 — Momento do Negócio -->
+                <div class="step-block" data-step="3">
+                    <h2 class="block-title"><span>03</span> Momento do Negócio</h2>
+                    <div class="form-group">
+                        <label class="form-label">Em que fase está sua empresa?</label>
+                        <div class="cards-grid">
+                            <label class="select-card">
+                                <input type="radio" name="fase" value="Ideação" required>
+                                <span class="card-label">Ideação / Setup</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="fase" value="Operação">
+                                <span class="card-label">Operação Ativa</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="fase" value="Escala">
+                                <span class="card-label">Escalando</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="fase" value="Consolidação">
+                                <span class="card-label">Consolidação</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Nível de Escala (1-5)</label>
+                        <input type="range" name="escala" min="1" max="5" value="3" class="form-input" style="height: 10px; padding: 0;">
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.5);">
+                            <span>Fase Inicial</span>
+                            <span>Crescimento</span>
+                            <span>Alta Performance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 4 — Mercado -->
+                <div class="step-block" data-step="4">
+                    <h2 class="block-title"><span>04</span> Mercado & Oportunidades</h2>
+                    <div class="form-group">
+                        <label class="form-label">Como você percebe o mercado atual?</label>
+                        <div class="cards-grid">
+                            <label class="select-card">
+                                <input type="radio" name="percepcao" value="Otimista" required>
+                                <span class="card-label">Otimista</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="percepcao" value="Cautelosa">
+                                <span class="card-label">Cautelosa</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="percepcao" value="Crítica">
+                                <span class="card-label">Crítica</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Principais Oportunidades ou Tendências que enxerga</label>
+                        <textarea name="oportunidades" class="form-input" rows="4" placeholder="Descreva brevemente..."></textarea>
+                    </div>
+                </div>
+
+                <!-- BLOCO 5 — Necessidades -->
+                <div class="step-block" data-step="5">
+                    <h2 class="block-title"><span>05</span> Alavancagem & Parcerias</h2>
+                    <div class="form-group">
+                        <label class="form-label">O que mais aceleraria seu crescimento hoje?</label>
+                        <textarea name="acelerador" class="form-input" rows="3" placeholder="Time, capital, tecnologia, networking..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Está em busca de novas parcerias ou projetos?</label>
+                        <div class="cards-grid">
+                            <label class="select-card">
+                                <input type="radio" name="busca_parceria" value="Sim" required>
+                                <span class="card-label">Sim</span>
+                            </label>
+                            <label class="select-card">
+                                <input type="radio" name="busca_parceria" value="Não">
+                                <span class="card-label">Não no momento</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BLOCO 6 — Networking -->
+                <div class="step-block" data-step="6">
+                    <h2 class="block-title"><span>06</span> Qualidade de Conexão</h2>
+                    <div class="form-group">
+                        <label class="form-label">Qual o seu principal objetivo no AUNIS Conecta?</label>
+                        <textarea name="objetivo_evento" class="form-input" rows="3" placeholder="Ex: Parcerias estratégicas, novos clientes, benchmarks..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Que perfil de conexão MAIS geraria valor para você?</label>
+                        <input type="text" name="perfil_desejado" class="form-input" placeholder="Ex: Empresários de escala, investidores, parceiros de tecnologia">
+                    </div>
+                </div>
+
+                <!-- BLOCO 7 — Visão Empresarial -->
+                <div class="step-block" data-step="7">
+                    <h2 class="block-title"><span>07</span> Visão Estratégica</h2>
+                    <div class="form-group">
+                        <label class="form-label">Uma característica essencial de um empresário de sucesso?</label>
+                        <input type="text" name="caracteristica_essencial" class="form-input" placeholder="Em poucas palavras">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">O maior problema que seu negócio resolve hoje?</label>
+                        <textarea name="problema_principal" class="form-input" rows="3" placeholder="Sua proposta de valor central"></textarea>
+                    </div>
+                </div>
+
+                <!-- Botões de Navegação -->
+                <div class="form-nav">
+                    <button type="button" id="btn-prev" class="btn-nav btn-prev" style="display: none;">Voltar</button>
+                    <button type="button" id="btn-next" class="btn-nav btn-next">Próxima Etapa</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="spinner-container">
+            <div class="spinner"></div>
+        </div>
+        <h2 style="color: #d6bb80; margin-bottom: 20px; font-family: 'Outfit', sans-serif; font-size: 2rem;">Estamos organizando suas informações…</h2>
+        <p style="color: rgba(255, 255, 255, 0.7); max-width: 450px; font-size: 1.1rem; line-height: 1.6;">Estamos analisando seu perfil para ajudar a criar conexões mais estratégicas dentro da AUNIS Conecta.</p>
+    </div>
+
+    <!-- Success Screen -->
+    <div id="success-container" class="container">
+        <div class="success-icon">✦</div>
+        <h2 class="success-title">Perfil registrado com sucesso.</h2>
+        <p class="success-subtitle">Agora você faz parte do mapeamento estratégico da AUNIS Conecta.</p>
+        
+        <div class="success-text">
+            Com base nas informações fornecidas, nossa inteligência de rede irá:
+            <ul>
+                <li>Identificar participantes com perfis complementares ao seu.</li>
+                <li>Mapear oportunidades de negócio diretas ou indiretas.</li>
+                <li>Orientar experiências mais relevantes e produtivas durante o evento.</li>
+            </ul>
+        </div>
+
+        <div class="success-actions">
+            <a href="./index.html#tickets" class="btn btn-gold">Garantir minha vaga no evento</a>
+            <a href="https://chat.whatsapp.com/G5Z5Z5Z5Z5Z5" class="btn btn-outline-white">Entrar no grupo de networking (WhatsApp)</a>
+        </div>
+    </div>
+
+    <script src="./form.js"></script>
+</body>
+
+</html>
