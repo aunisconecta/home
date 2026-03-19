@@ -142,8 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loadingScreen.style.display = 'flex';
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // A URL será preenchida assim que o usuário enviá-la
-        const WEBHOOK_URL = "";
+        // URL real do Webhook gerado pelo usuário
+        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxrsqYfPoUhoqZ30gdxhQq65Hv1dPVuMeiqBKG6dLOY8-w8scr21YjnlKksmIsMQiX5Mw/exec";
 
         // Send Data to Google Sheets Webhook without blocking the UI
         if (WEBHOOK_URL) {
