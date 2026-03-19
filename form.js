@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
         // URL real do Webhook gerado pelo usuário
-        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxrsqYfPoUhoqZ30gdxhQq65Hv1dPVuMeiqBKG6dLOY8-w8scr21YjnlKksmIsMQiX5Mw/exec";
+        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxDa76LQr_DFxV-oc3dhF9NbgImbKvHqOGJMEzuWs2Rt7_jMQ8qxRC7fWB0b9HSL9Pmyg/exec";
 
         // Send Data to Google Sheets Webhook without blocking the UI
         if (WEBHOOK_URL) {
