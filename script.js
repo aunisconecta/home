@@ -95,11 +95,11 @@ document.addEventListener('DOMContentLoaded', () => {
         currentLoteIndex = activeIndex;
         countdownDate = new Date(LOTES[activeIndex].end).getTime();
 
-        // Update Duo PIX button
-        const duoPixBtn = document.getElementById("btn-pix-duo");
-        if (duoPixBtn) {
-            duoPixBtn.onclick = () => openPixModal(OFFERS.duo);
-        }
+        // Update Duo PIX buttons across all lotes
+        const duoPixBtns = document.querySelectorAll(".btn-pix-duo");
+        duoPixBtns.forEach(btn => {
+            btn.onclick = () => openPixModal(OFFERS.duo);
+        });
 
         // Update UI for each card
         LOTES.forEach((lote, index) => {
@@ -108,18 +108,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const waitBtn = document.getElementById(`wait-lote-${lote.id}`);
             const fixedBtn = document.getElementById("fixed-cta-btn");
             const pixBtn = document.getElementById(`btn-pix-lote-${lote.id}`);
+            const localDuoBtn = card.querySelector('.btn-duo');
+            const localPixDuoBtn = card.querySelector('.btn-pix-duo');
 
             if (index < activeIndex) {
                 // Past lote
                 card.style.opacity = "0.5";
                 card.classList.remove('highlighted');
                 if (btn) btn.style.display = "none";
+                if (localDuoBtn) localDuoBtn.style.display = "none";
+                
                 if (pixBtn) {
                     pixBtn.style.display = "block";
                     pixBtn.style.opacity = "0.3";
                     pixBtn.style.pointerEvents = "none";
                     pixBtn.onclick = null;
                 }
+                if (localPixDuoBtn) {
+                    localPixDuoBtn.style.display = "block";
+                    localPixDuoBtn.style.opacity = "0.3";
+                    localPixDuoBtn.style.pointerEvents = "none";
+                }
+                
                 if (waitBtn) {
                     waitBtn.style.display = "block";
                     waitBtn.innerText = "LOTE ENCERRADO";
@@ -134,11 +144,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     btn.classList.remove('btn-outline');
                     btn.classList.add('btn-primary');
                 }
+                if (localDuoBtn) localDuoBtn.style.display = "block";
+                
                 if (pixBtn) {
                     pixBtn.style.display = "block";
                     pixBtn.style.opacity = "1";
                     pixBtn.style.pointerEvents = "auto";
                     pixBtn.onclick = () => openPixModal(lote);
+                }
+                if (localPixDuoBtn) {
+                    localPixDuoBtn.style.display = "block";
+                    localPixDuoBtn.style.opacity = "1";
+                    localPixDuoBtn.style.pointerEvents = "auto";
                 }
                 if (waitBtn) waitBtn.style.display = "none";
                 
@@ -156,11 +173,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.opacity = "0.7";
                 card.classList.remove('highlighted');
                 if (btn) btn.style.display = "none";
+                if (localDuoBtn) localDuoBtn.style.display = "none";
+                
                 if (pixBtn) {
                     pixBtn.style.display = "block";
                     pixBtn.style.opacity = "0.3";
                     pixBtn.style.pointerEvents = "none";
                     pixBtn.onclick = null;
+                }
+                if (localPixDuoBtn) {
+                    localPixDuoBtn.style.display = "block";
+                    localPixDuoBtn.style.opacity = "0.3";
+                    localPixDuoBtn.style.pointerEvents = "none";
                 }
                 if (waitBtn) {
                     waitBtn.style.display = "block";
