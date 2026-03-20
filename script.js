@@ -108,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const waitBtn = document.getElementById(`wait-lote-${lote.id}`);
             const fixedBtn = document.getElementById("fixed-cta-btn");
             const pixBtn = document.getElementById(`btn-pix-lote-${lote.id}`);
+            const localDuoBtn = card.querySelector('.btn-duo');
+            const localPixDuoBtn = card.querySelector('.btn-pix-duo');
 
             if (index < activeIndex) {
                 // Past lote
@@ -120,6 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     pixBtn.style.opacity = "0.3";
                     pixBtn.style.pointerEvents = "none";
                     pixBtn.onclick = null;
+                }
+                
+                if (localDuoBtn) {
+                    localDuoBtn.style.opacity = "0.3";
+                    localDuoBtn.style.pointerEvents = "none";
+                    localDuoBtn.onclick = (e) => e.preventDefault();
+                }
+                if (localPixDuoBtn) {
+                    localPixDuoBtn.style.opacity = "0.3";
+                    localPixDuoBtn.style.pointerEvents = "none";
                 }
                 
                 if (waitBtn) {
@@ -143,6 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     pixBtn.style.pointerEvents = "auto";
                     pixBtn.onclick = () => openPixModal(lote);
                 }
+                
+                if (localDuoBtn) {
+                    localDuoBtn.style.opacity = "1";
+                    localDuoBtn.style.pointerEvents = "auto";
+                    localDuoBtn.onclick = null;
+                }
+                if (localPixDuoBtn) {
+                    localPixDuoBtn.style.opacity = "1";
+                    localPixDuoBtn.style.pointerEvents = "auto";
+                }
+                
                 if (waitBtn) waitBtn.style.display = "none";
                 
                 // Update fixed bar CTA to scroll to tickets instead of direct link
@@ -166,6 +189,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     pixBtn.style.pointerEvents = "none";
                     pixBtn.onclick = null;
                 }
+                
+                if (localDuoBtn) {
+                    localDuoBtn.style.opacity = "0.3";
+                    localDuoBtn.style.pointerEvents = "none";
+                    localDuoBtn.onclick = (e) => e.preventDefault();
+                }
+                if (localPixDuoBtn) {
+                    localPixDuoBtn.style.opacity = "0.3";
+                    localPixDuoBtn.style.pointerEvents = "none";
+                }
+                
                 if (waitBtn) {
                     waitBtn.style.display = "block";
                     waitBtn.innerText = "Aguardando Virada";
