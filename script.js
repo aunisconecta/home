@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { 
             id: 1, 
             end: "2026-03-18T23:59:59", 
-            link: "https://pay.sumup.com/b2c/QI3ZWCYT", 
+            link: "https://pay.hotmart.com/Y104989828L?off=b9l40edb", 
             name: "1º Lote",
             price: "298,00",
             pix: "00020126730014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0221AUNIS Jkabreueventos 5204000053039865406298.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU202603120457338265166326304625A"
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { 
             id: 2, 
             end: "2026-03-22T23:59:59", 
-            link: "https://pay.sumup.com/b2c/QHHGZGFP", 
+            link: "https://pay.hotmart.com/Y104989828L?off=yf390xfr", 
             name: "2º Lote",
             price: "348,00",
             pix: "00020126650014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0213AUNIS Jkabreu5204000053039865406348.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU20260312135903043378632630409EB"
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { 
             id: 3, 
             end: "2026-03-25T23:59:59", 
-            link: "https://pay.sumup.com/b2c/QBKDD65A", 
+            link: "https://pay.hotmart.com/Y104989828L?off=i0alzxio", 
             name: "Lote Final",
             price: "398,00",
             pix: "00020126650014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0213AUNIS Jkabreu5204000053039865406398.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU2026031214015242822263263041024"
