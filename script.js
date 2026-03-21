@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'duo',
             name: "Combo Duo (2 Ingressos)",
             price: "496,00",
-            link: "https://pay.hotmart.com/Y104989828L?off=z62aokix",
+            link: "./mapa.html?lote=duo",
             pix: "00020126710014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0219AUNISconectaeventos5204000053039865406496.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU202603171148128792436326304B7D7"
         }
     };

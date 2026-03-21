@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Grab URL parameter for auto-selecting Lote
+    const urlParams = new URLSearchParams(window.location.search);
+    const preselectedLote = urlParams.get('lote');
+
+    if (preselectedLote) {
+        // Find the input matching the lote value and check it before UI initialization
+        const loteInput = document.querySelector(`input[name="lote"][value="${preselectedLote}"]`);
+        if (loteInput) loteInput.checked = true;
+    }
+
     const form = document.getElementById('mapa-form');
     const steps = document.querySelectorAll('.step-block');
     const btnNext = document.getElementById('btn-next');
@@ -157,15 +167,37 @@ document.addEventListener('DOMContentLoaded', () => {
             }).catch(console.error);
         }
 
-        // Simula análise de 3 segundos para a experiência do usuário
+        // Simula análise rápida e redireciona (reduzido de 3s para 1.5s)
         setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            successContainer.style.display = 'block';
+            // Hotmart Checkout Config
+            const loteEscolhido = data.lote;
+            const nomeStr = data.nome ? encodeURIComponent(data.nome) : '';
+            const emailStr = data.email ? encodeURIComponent(data.email) : '';
             
-            // Update Progress to 100% just in case
-            progressFill.style.width = '100%';
-            progressPercent.innerText = '100%';
-        }, 3000);
+            // Clean non-digits from WhatsApp
+            const whatsRaw = data.whatsapp || '';
+            let whatsLimpo = whatsRaw.replace(/\D/g, '');
+            // Hotmart expects phonenumber format often without +55 if it's already local, 
+            // but providing just numbers is fine.
+            const whatsStr = encodeURIComponent(whatsLimpo);
+            
+            let baseUrl = "https://pay.hotmart.com/Y104989828L"; // Base fallback
+            if (loteEscolhido === "1") baseUrl += "?off=b9l40edb";
+            else if (loteEscolhido === "2") baseUrl += "?off=yf390xfr";
+            else if (loteEscolhido === "3") baseUrl += "?off=i0alzxio";
+            else if (loteEscolhido === "duo") baseUrl += "?off=z62aokix";
+            
+            // Append buyer data
+            const connectChar = baseUrl.includes("?") ? "&" : "?";
+            const finalUrl = `${baseUrl}${connectChar}name=${nomeStr}&email=${emailStr}&phonenumber=${whatsStr}`;
+            
+            // Log for debugging
+            console.log("Redirecting to:", finalUrl);
+            
+            // Execute Redirect
+            window.location.href = finalUrl;
+            
+        }, 1500);
     };
 
     setupCardSelectors();
