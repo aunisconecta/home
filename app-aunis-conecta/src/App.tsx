@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { Home, ShoppingBag, Users, Calendar, User, Bell, MessageCircle, ChevronLeft } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
