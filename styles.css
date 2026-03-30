@@ -806,19 +806,19 @@ ul {
 
 .popular-badge {
     position: absolute;
-    top: 15px;
-    right: -35px;
+    top: 0;
+    right: 0;
     background: var(--color-gold);
-    color: var(--color-white);
-    padding: 5px 40px;
-    transform: rotate(45deg);
-    font-size: 0.8rem;
+    color: var(--color-black);
+    padding: 8px 20px;
+    font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: -2px 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 100;
     white-space: nowrap;
     letter-spacing: 1px;
+    border-radius: 0 0 0 15px;
 }
 
 .card-header {
