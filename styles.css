@@ -806,16 +806,16 @@ ul {
 
 .popular-badge {
     position: absolute;
-    top: 28px;
-    right: -55px;
+    top: 15px;
+    right: -35px;
     background: var(--color-gold);
     color: var(--color-white);
-    padding: 6px 50px;
+    padding: 5px 40px;
     transform: rotate(45deg);
-    font-size: 0.75rem;
-    font-weight: 800;
+    font-size: 0.8rem;
+    font-weight: bold;
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     z-index: 100;
     white-space: nowrap;
     letter-spacing: 1px;
