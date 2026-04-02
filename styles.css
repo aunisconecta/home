@@ -1050,9 +1050,28 @@ ul {
 
     .event-grid,
     .speaker-grid,
-    .results-grid,
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+
+    .results-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 15px;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .results-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .results-grid img {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        max-width: 85%;
     }
 
     .speaker-grid {
