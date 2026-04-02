@@ -1,0 +1,28 @@
+
+> website@0.0.0 build
+> vite build
+
+[36mvite v6.4.1 [32mbuilding for production...[36m[39m
+transforming...
+[32mÔ£ô[39m 1456 modules transformed.
+Ô£ù Build failed in 8.59s
+error during build:
+main.js (2:89): "CalendarStar" is not exported by "node_modules/lucide/dist/esm/lucide.js", imported by "main.js".
+file: C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/main.js:2:89
+
+1: import './style.css'
+2: import { createIcons, Menu, Target, ShieldCheck, Linkedin, Smartphone, Briefcase, Users, CalendarStar, Gem, Concierge...
+                                                                                            ^
+3: 
+4: // Initialize Lucide Icons
+
+    at getRollupError (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/parseAst.js:406:41)
+    at error (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/parseAst.js:402:42)
+    at Module.error (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:17380:16)
+    at Module.traceVariable (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:17813:29)
+    at ModuleScope.findVariable (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:15403:39)
+    at Identifier.bind (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:5450:40)
+    at Property.bind (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:2832:23)
+    at ObjectExpression.bind (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:2828:28)
+    at Property.bind (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:2832:23)
+    at ObjectExpression.bind (file:///C:/Users/Usuario/.gemini/antigravity/playground/conecta-aunis/institucional-src/node_modules/rollup/dist/es/shared/node-entry.js:2828:28)
