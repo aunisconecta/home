@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog AUNIS | Insights de Negócios e Networking</title>
     <meta name="description" content="Acesse análises aprofundadas sobre M&A, Finanças, Venture Capital e estratégias de Networking de Alta Performance." />
-    <script type="module" crossorigin src="/home/institucional/assets/main-soceqG5J.js"></script>
-    <link rel="stylesheet" crossorigin href="/home/institucional/assets/main-DCrqqldw.css">
+    <script type="module" crossorigin src="/home/institucional/assets/main-COXMFQ0w.js"></script>
+    <link rel="stylesheet" crossorigin href="/home/institucional/assets/main-HfyrJ3Bm.css">
   </head>
   <body class="bg-brand-dark relative font-sans">
 
@@ -66,7 +66,7 @@
 
         <!-- Featured Hero Article -->
         <div class="mb-20">
-          <a href="#" class="group relative block overflow-hidden rounded-3xl aspect-[16/9] md:aspect-[21/9]">
+          <div onclick="openArticle('hero')" class="group relative block overflow-hidden rounded-3xl aspect-[16/9] md:aspect-[21/9] cursor-pointer">
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop" alt="Finanças" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
             <!-- Stronger dark overlay for readability -->
             <div class="absolute inset-0 bg-black/30"></div>
@@ -80,7 +80,7 @@
               <h2 class="text-3xl md:text-5xl font-black text-white mb-4 leading-tight group-hover:text-brand-coral transition-colors drop-shadow-2xl">Panorama de M&A no Brasil:<br/>Expectativas para o próximo ciclo de Fusões</h2>
               <p class="text-zinc-200 text-base md:text-xl md:block drop-shadow-lg max-w-3xl">Análise metodológica sobre como a queda das taxas de juros vai reativar os grandes deals entre startups B2B e fundos de Middle Market no Brasil.</p>
             </div>
-          </a>
+          </div>
         </div>
 
         <!-- Categories Filters -->
@@ -95,7 +95,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           
           <!-- Article 2 -->
-          <a href="#" class="group block">
+          <div onclick="openArticle('networking')" class="group block cursor-pointer">
             <div class="relative overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
               <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?q=80&w=800&auto=format&fit=crop" alt="Networking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -107,10 +107,10 @@
             <div class="flex items-center gap-2 text-brand-coral text-sm font-bold">
               Ler Artigo <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </div>
-          </a>
+          </div>
 
           <!-- Article 3 -->
-          <a href="#" class="group block">
+          <div onclick="openArticle('valuation')" class="group block cursor-pointer">
             <div class="relative overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
               <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop" alt="Business" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-4 left-4 bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
@@ -122,10 +122,10 @@
             <div class="flex items-center gap-2 text-brand-coral text-sm font-bold">
               Ler Artigo <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </div>
-          </a>
+          </div>
 
           <!-- Article 4 -->
-          <a href="#" class="group block">
+          <div onclick="openArticle('vcfuture')" class="group block cursor-pointer">
             <div class="relative overflow-hidden rounded-2xl mb-5 aspect-[4/3]">
               <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop" alt="Podcast" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
               <div class="absolute top-4 left-4 bg-brand-coral text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
@@ -137,7 +137,7 @@
             <div class="flex items-center gap-2 text-brand-coral text-sm font-bold">
               Ouvir Agora <i data-lucide="play" class="w-4 h-4"></i>
             </div>
-          </a>
+          </div>
 
         </div>
 
@@ -150,6 +150,24 @@
 
       </div>
     </main>
+
+    <!-- Reading Modal -->
+    <div id="read-modal" class="fixed inset-0 z-[100] hidden overflow-y-auto bg-brand-black/95 backdrop-blur-xl">
+      <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-brand-dark w-full max-w-4xl rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative">
+          
+          <!-- Close Button -->
+          <button onclick="closeArticle()" class="absolute top-6 right-6 z-10 p-2 bg-white/10 hover:bg-brand-coral rounded-full text-white backdrop-blur-md transition-all">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+
+          <!-- Modal Content -->
+          <div id="modal-body" class="p-0">
+            <!-- Content injects here -->
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer Estático Institucional (Sync with index.html) -->
     <footer class="bg-brand-black pt-20 pb-10 border-t border-white/5 relative z-10">
@@ -224,8 +242,110 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Simple JS to handle mobile menu toggle -->
     <script>
+      const articles = {
+        hero: {
+          title: "Panorama de M&A no Brasil: Expectativas para o próximo ciclo de Fusões",
+          category: "Finanças",
+          date: "02 de Abril, 2026",
+          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop",
+          content: `
+            <p class="mb-6 font-semibold text-lg text-white">Análise metodológica sobre como a queda das taxas de juros vai reativar os grandes deals entre startups B2B e fundos de Middle Market no Brasil.</p>
+            <p class="mb-4">O mercado brasileiro de fusões e aquisições (M&A) está prestes a entrar em um novo ciclo de aquecimento. Com a estabilização da taxa Selic em níveis mais amigáveis, o capital que estava "sentado" em renda fixa começa a procurar o risco produtivo.</p>
+            <h4 class="text-white font-bold text-xl mb-4">Setores em Destaque</h4>
+            <p class="mb-4">Tecnologia, Agro e Saúde continuam sendo as joias da coroa. Empresas com margens saudáveis e crescimento sustentável (a era do 'growth at all costs' acabou) são os alvos principais.</p>
+            <p class="mb-4">O ecossistema AUNIS tem monitorado que a preparação do "Equity" começa 24 meses antes do deal. Sem governança, não há valuation premium.</p>
+          `
+        },
+        networking: {
+          title: "Givers Gain e a Fórmula AUNIS de conversão",
+          category: "Networking",
+          date: "01 de Abril, 2026",
+          image: "https://images.unsplash.com/photo-1556761175-5973dc0f32d7?q=80&w=800&auto=format&fit=crop",
+          content: `
+            <p class="mb-6 font-semibold text-lg text-white">A engenharia reversa por trás dos jantares de R$ 5 milhões e a mentalidade que você precisa adotar.</p>
+            <p class="mb-4">Networking não é 'pedir favor'. Networking é sobre plantar valor para colher relacionamento e, consequentemente, lucro. Na AUNIS, aplicamos a filosofia do <strong>Givers Gain</strong> (Quem dá, ganha).</p>
+            <h4 class="text-white font-bold text-xl mb-4">Como Funciona na Prática?</h4>
+            <ul class="list-disc ml-6 mb-6 space-y-2">
+              <li><strong>Mapeamento de Necessidades:</strong> Descubra o que o outro empresário precisa antes de falar do seu produto.</li>
+              <li><strong>Conexão Altruísta:</strong> Apresente dois empresários sem esperar nada em troca nas primeiras 48h.</li>
+              <li><strong>Reciprocidade Orgânica:</strong> O mercado recompensa os grandes conectores.</li>
+            </ul>
+          `
+        },
+        valuation: {
+          title: "Do Caixa Rápido ao Valuation: Alavancas de Valor",
+          category: "Empreendedorismo",
+          date: "31 de Março, 2026",
+          image: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop",
+          content: `
+            <p class="mb-6 font-semibold text-lg text-white">Como práticas sólidas de ESG, Governança e Compliance prepararam e precificam sua empresa na hora de captar dinheiro.</p>
+            <p class="mb-4">Muitos empresários focam apenas no faturamento mensal. Mas o faturamento é 'vaidade', o lucro é 'sanidade' e o <strong>Equity</strong> é o que te faz livre.</p>
+            <p class="mb-4">Um Valuation de 10x EBITDA não nasce da noite para o dia. Ele nasce de processos auditáveis, contratos sólidos e uma cultura que não depende apenas do dono.</p>
+            <h4 class="text-white font-bold text-xl mb-4">A Escada do Valor</h4>
+            <p>1. Operação Rodando -> 2. Lucratividade Provada -> 3. Governança Estabelecida -> 4. Saída Estratégica (EXIT).</p>
+          `
+        },
+        vcfuture: {
+          title: "Ep. 42: O Inverno do Venture Capital acabou?",
+          category: "Podcast Cast",
+          date: "30 de Março, 2026",
+          image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=800&auto=format&fit=crop",
+          content: `
+            <p class="mb-6 font-semibold text-lg text-white">Entrevista com diretores e sócios dos maiores fundos de VC da América Latina que frequentam o ecossistema AUNIS.</p>
+            <div class="flex items-center justify-center p-8 bg-zinc-900 rounded-2xl mb-8 border border-brand-coral/20">
+               <div class="text-center">
+                  <i data-lucide="play-circle" class="w-16 h-16 text-brand-coral mx-auto mb-4 animate-pulse"></i>
+                  <p class="text-sm font-bold text-white uppercase tracking-tighter">Ouvir agora no Portal exclusivo</p>
+               </div>
+            </div>
+            <p class="mb-4">Neste episódio discutimos o retorno dos investimentos em séries B e C. Os fundos estão com 'pó seco' (capital disponível) recorde esperando as teses certas.</p>
+          `
+        }
+      };
+
+      function openArticle(id) {
+        const article = articles[id];
+        const modal = document.getElementById('read-modal');
+        const body = document.getElementById('modal-body');
+        
+        body.innerHTML = `
+          <div class="relative h-64 md:h-96">
+            <img src="${article.image}" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent"></div>
+          </div>
+          <div class="p-8 md:p-12 lg:p-16 max-w-3xl mx-auto text-zinc-400">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="bg-brand-coral text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">${article.category}</span>
+              <span class="text-sm font-medium">${article.date}</span>
+            </div>
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-8 leading-tight">${article.title}</h2>
+            <div class="prose prose-invert max-w-none text-zinc-400 text-lg leading-relaxed">
+              ${article.content}
+            </div>
+            <div class="mt-16 pt-8 border-t border-white/5 flex justify-between items-center">
+              <button onclick="closeArticle()" class="text-brand-coral font-bold flex items-center gap-2 hover:text-white transition-colors">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para o Portal
+              </button>
+              <div class="flex gap-4">
+                 <i data-lucide="share-2" class="w-5 h-5 cursor-pointer hover:text-white transition-colors"></i>
+                 <i data-lucide="bookmark" class="w-5 h-5 cursor-pointer hover:text-white transition-colors"></i>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons();
+      }
+
+      function closeArticle() {
+        const modal = document.getElementById('read-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
@@ -237,5 +357,7 @@
         }
       });
     </script>
+  </body>
+</html>
   </body>
 </html>
