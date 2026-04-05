@@ -85,19 +85,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (acceptBtn) acceptBtn.addEventListener('click', () => hideBanner('accepted'));
   if (rejectBtn) rejectBtn.addEventListener('click', () => hideBanner('rejected'));
 
-  // Initialize Swiper Hero
-  new Swiper(".mySwiper", {
-    modules: [Navigation, Pagination, Autoplay, Parallax],
+  // Initialize Hero Swiper
+  new Swiper(".heroSwiper", {
+    modules: [Autoplay, Navigation, Parallax],
     speed: 1000,
-    loop: true,
     parallax: true,
+    loop: true,
     autoplay: {
-      delay: 6000,
+      delay: 5000,
       disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
     },
     navigation: {
       nextEl: ".swiper-button-next",
@@ -105,77 +101,69 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   });
 
-  // Initialize Logos Swiper (Infinite Marquee)
-  const logosSwiper = new Swiper(".logosSwiper", {
-    modules: [Autoplay],
-    slidesPerView: "auto",
-    spaceBetween: 0,
-    loop: true,
-    speed: 5000,
-    allowTouchMove: false,
-    autoplay: {
-      delay: 0,
-      disableOnInteraction: false,
-    },
-  });
-
-  // Advanced Mouse Interactive Logic (Smooth Braking)
-  const logosContainer = document.querySelector('.logosSwiper');
-  if (logosContainer) {
-    let speed = 1.5; // Base speed
+  // --- NEW INFINITY MARQUEE v2 (Seamless & Interactive) ---
+  const marqueeContainer = document.getElementById('marquee-container');
+  const marqueeTrack = document.getElementById('marquee-track');
+  
+  if (marqueeContainer && marqueeTrack) {
+    let speed = 1.0; // Base speed (pixels per frame)
     let currentSpeed = speed;
     let targetSpeed = speed;
-    let isMouseOver = false;
+    let scrollPos = 0;
+    
+    // Get the width of ONE set of logos
+    const firstSet = marqueeTrack.querySelector('.marquee-content');
+    let contentWidth = firstSet.offsetWidth;
 
-    logosContainer.addEventListener('mousemove', (e) => {
-      isMouseOver = true;
-      const rect = logosContainer.getBoundingClientRect();
+    // Control Zones Logic
+    marqueeContainer.addEventListener('mousemove', (e) => {
+      const rect = marqueeContainer.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const width = rect.width;
       const percent = (x / width) * 100;
 
       if (percent < 35) {
-        // Left Area -> Target scroll Right (Positive speed)
-        targetSpeed = -speed; 
+        targetSpeed = -speed * 1.5; // Reverse
       } else if (percent > 65) {
-        // Right Area -> Target scroll Left (Negative speed)
-        targetSpeed = speed;
+        targetSpeed = speed * 1.5;  // Forward
       } else {
-        // Center Area -> Brake
-        targetSpeed = 0;
+        targetSpeed = 0;            // Brake
       }
     });
 
-    logosContainer.addEventListener('mouseleave', () => {
-      isMouseOver = false;
-      targetSpeed = speed; // Default scroll Left
+    marqueeContainer.addEventListener('mouseleave', () => {
+      targetSpeed = speed;
     });
 
-    function animateLogos() {
-      // Smooth interpolation (Lerp) for braking/acceleration
+    function renderMarquee() {
+      // Smooth Braking (Lerp)
       currentSpeed += (targetSpeed - currentSpeed) * 0.05;
-
-      if (Math.abs(currentSpeed) > 0.01 || !isMouseOver) {
-         // Stop Swiper internal autoplay to take manual control
-         if (logosSwiper.autoplay.running) {
-           logosSwiper.autoplay.stop();
-         }
-         
-         const currentTranslate = logosSwiper.getTranslate();
-         let newTranslate = currentTranslate - currentSpeed;
-         
-         // Loop logic (Simple version for infinite feel)
-         const wrapperWidth = logosSwiper.wrapperEl.scrollWidth / 2;
-         if (newTranslate > 0) newTranslate = -wrapperWidth;
-         if (newTranslate < -wrapperWidth) newTranslate = 0;
-         
-         logosSwiper.setTranslate(newTranslate);
-      }
       
-      requestAnimationFrame(animateLogos);
+      // Update Position
+      scrollPos += currentSpeed;
+
+      // SEAMLESS LOOP LOGIC
+      // If moving left (positive speed) and passed the first set
+      if (scrollPos >= contentWidth) {
+        scrollPos = 0;
+      }
+      // If moving right (negative speed) and passed the start
+      if (scrollPos < 0) {
+        scrollPos = contentWidth;
+      }
+
+      // Apply transform (Note: moving the track to the LEFT means negative translateX)
+      marqueeTrack.style.transform = `translate3d(${-scrollPos}px, 0, 0)`;
+
+      requestAnimationFrame(renderMarquee);
     }
 
-    // Start manual animation loop
-    animateLogos();
+    // Recalculate on resize
+    window.addEventListener('resize', () => {
+      contentWidth = firstSet.offsetWidth;
+    });
+
+    // Start
+    renderMarquee();
   }
 });
