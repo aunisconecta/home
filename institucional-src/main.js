@@ -104,4 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
       prevEl: ".swiper-button-prev",
     },
   });
+
+  // Initialize Logos Swiper (Infinite Marquee)
+  new Swiper(".logosSwiper", {
+    modules: [Autoplay],
+    slidesPerView: "auto",
+    spaceBetween: 0,
+    loop: true,
+    speed: 5000,
+    allowTouchMove: false,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+    },
+  });
 });
