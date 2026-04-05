@@ -106,9 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const marqueeTrack = document.getElementById('marquee-track');
   
   if (marqueeContainer && marqueeTrack) {
-    let speed = 1.0; // Base speed (pixels per frame)
-    let currentSpeed = speed;
-    let targetSpeed = speed;
+    let speedSlow = 0.6; // Speed when mouse is OUT
+    let speedFast = 2.0; // Speed when mouse is IN (Left/Right)
+    let currentSpeed = speedSlow;
+    let targetSpeed = speedSlow;
     let scrollPos = 0;
     
     // Get the width of ONE set of logos
@@ -123,16 +124,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const percent = (x / width) * 100;
 
       if (percent < 35) {
-        targetSpeed = -speed * 1.5; // Reverse
+        targetSpeed = -speedFast; // Reverse & Faster
       } else if (percent > 65) {
-        targetSpeed = speed * 1.5;  // Forward
+        targetSpeed = speedFast;  // Forward & Faster
       } else {
-        targetSpeed = 0;            // Brake
+        targetSpeed = 0;            // Brake in the middle
       }
     });
 
     marqueeContainer.addEventListener('mouseleave', () => {
-      targetSpeed = speed;
+      targetSpeed = speedSlow; // Return to slow default
     });
 
     function renderMarquee() {
