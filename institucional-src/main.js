@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initialize Logos Swiper (Infinite Marquee)
-  new Swiper(".logosSwiper", {
+  const logosSwiper = new Swiper(".logosSwiper", {
     modules: [Autoplay],
     slidesPerView: "auto",
     spaceBetween: 0,
@@ -118,4 +118,64 @@ document.addEventListener('DOMContentLoaded', () => {
       disableOnInteraction: false,
     },
   });
+
+  // Advanced Mouse Interactive Logic (Smooth Braking)
+  const logosContainer = document.querySelector('.logosSwiper');
+  if (logosContainer) {
+    let speed = 1.5; // Base speed
+    let currentSpeed = speed;
+    let targetSpeed = speed;
+    let isMouseOver = false;
+
+    logosContainer.addEventListener('mousemove', (e) => {
+      isMouseOver = true;
+      const rect = logosContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const width = rect.width;
+      const percent = (x / width) * 100;
+
+      if (percent < 35) {
+        // Left Area -> Target scroll Right (Positive speed)
+        targetSpeed = -speed; 
+      } else if (percent > 65) {
+        // Right Area -> Target scroll Left (Negative speed)
+        targetSpeed = speed;
+      } else {
+        // Center Area -> Brake
+        targetSpeed = 0;
+      }
+    });
+
+    logosContainer.addEventListener('mouseleave', () => {
+      isMouseOver = false;
+      targetSpeed = speed; // Default scroll Left
+    });
+
+    function animateLogos() {
+      // Smooth interpolation (Lerp) for braking/acceleration
+      currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+
+      if (Math.abs(currentSpeed) > 0.01 || !isMouseOver) {
+         // Stop Swiper internal autoplay to take manual control
+         if (logosSwiper.autoplay.running) {
+           logosSwiper.autoplay.stop();
+         }
+         
+         const currentTranslate = logosSwiper.getTranslate();
+         let newTranslate = currentTranslate - currentSpeed;
+         
+         // Loop logic (Simple version for infinite feel)
+         const wrapperWidth = logosSwiper.wrapperEl.scrollWidth / 2;
+         if (newTranslate > 0) newTranslate = -wrapperWidth;
+         if (newTranslate < -wrapperWidth) newTranslate = 0;
+         
+         logosSwiper.setTranslate(newTranslate);
+      }
+      
+      requestAnimationFrame(animateLogos);
+    }
+
+    // Start manual animation loop
+    animateLogos();
+  }
 });
