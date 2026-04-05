@@ -6,6 +6,15 @@
     <title>Aunis Conecta | Conexões que geram Equity</title>
     <meta name="description" content="Conectamos líderes e empresas para gerar parcerias estratégicas que transformam negócios. O ecossistema premium para C-Levels." />
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+      .swiper { width: 100%; height: 100vh; }
+      .swiper-slide { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+      .swiper-button-next, .swiper-button-prev { color: #fff !important; width: 50px; height: 50px; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border-radius: 50%; border: 1px border rgba(255,255,255,0.1); }
+      .swiper-button-next:after, .swiper-button-prev:after { font-size: 18px !important; font-weight: bold; }
+      .swiper-pagination-bullet { background: #fff !important; opacity: 0.3; }
+      .swiper-pagination-bullet-active { background: #E54B4B !important; opacity: 1; width: 30px; border-radius: 10px; }
+    </style>
   </head>
   <body class="relative">
 
@@ -54,30 +63,88 @@
       </div>
     </nav>
 
-    <!-- Aba 1: Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      <!-- Background Image with Overlay -->
-      <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?q=80&w=2000&auto=format&fit=crop" alt="Corporate Meeting" class="w-full h-full object-cover opacity-20" />
-        <div class="absolute inset-0 bg-gradient-to-b from-brand-black/80 via-brand-black/90 to-brand-black"></div>
-      </div>
+    <!-- Aba 1: Hero Section (Dynamic Carousel) -->
+    <section id="inicio" class="relative h-screen pt-20 overflow-hidden">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          
+          <!-- Slide 1: Equity -->
+          <div class="swiper-slide">
+            <div class="absolute inset-0 z-0">
+              <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-20" />
+              <div class="absolute inset-0 bg-gradient-to-b from-brand-black/80 via-brand-black/90 to-brand-black"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-swiper-parallax="-300">
+              <span class="text-brand-coral font-semibold tracking-wider uppercase text-sm mb-4 block">Aunis Conecta</span>
+              <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">Conexões que geram <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">Equity.</span></h1>
+              <p class="mt-4 text-xl text-zinc-400 max-w-2xl mx-auto mb-10 font-light">Conectamos líderes e empresas para gerar parcerias estratégicas que transformam negócios. O ecossistema definitivo para C-Levels.</p>
+              <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#membro" class="w-full sm:w-auto bg-brand-coral hover:bg-brand-coralhover text-white px-8 py-4 rounded-full text-lg font-semibold transition-all shadow-[0_0_20px_rgba(229,75,75,0.4)]">Aplicar para Curadoria</a>
+              </div>
+            </div>
+          </div>
 
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <span class="text-brand-coral font-semibold tracking-wider uppercase text-sm mb-4 block">Aunis Conecta</span>
-        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
-          Conexões que geram <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">Equity.</span>
-        </h1>
-        <p class="mt-4 text-xl text-zinc-400 max-w-2xl mx-auto mb-10 font-light">
-          Conectamos líderes e empresas para gerar parcerias estratégicas que transformam negócios. O ecossistema definitivo para C-Levels.
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <a href="#membro" class="w-full sm:w-auto bg-brand-coral hover:bg-brand-coralhover text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 shadow-[0_0_20px_rgba(229,75,75,0.4)] hover:shadow-[0_0_30px_rgba(229,75,75,0.6)]">
-            Aplicar para Curadoria
-          </a>
-          <a href="#ecossistema" class="w-full sm:w-auto bg-transparent border border-zinc-700 hover:border-zinc-500 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300">
-            Conhecer Soluções
-          </a>
+          <!-- Slide 2: Summit 2026 -->
+          <div class="swiper-slide">
+            <div class="absolute inset-0 z-0">
+              <img src="https://images.unsplash.com/photo-1540575861501-7ad060e39fe1?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" />
+              <div class="absolute inset-0 bg-gradient-to-b from-brand-black/60 via-brand-black/80 to-brand-black"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-swiper-parallax="-300">
+              <span class="text-white bg-brand-coral px-4 py-1 rounded-full font-bold uppercase tracking-widest text-xs mb-4 inline-block">Save the Date</span>
+              <h2 class="text-5xl md:text-7xl font-black text-white mb-6 uppercase tracking-tighter">AUNIS SUMMIT <br/><span class="text-brand-coral">2026.</span></h2>
+              <p class="mt-4 text-xl text-white max-w-2xl mx-auto mb-10 font-semibold drop-shadow-md">20, 21 e 22 de Outubro | São Paulo - SP <br/>O maior encontro de C-Levels do Brasil.</p>
+              <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#membro" class="w-full sm:w-auto bg-white text-brand-black px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl">Garantir Ingresso VIP</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Forbes/Authority -->
+          <div class="swiper-slide">
+            <div class="absolute inset-0 z-0">
+              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-20" />
+              <div class="absolute inset-0 bg-gradient-to-b from-brand-black/90 via-zinc-950/40 to-brand-black"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12 text-left" data-swiper-parallax="-300">
+              <div class="flex-1">
+                 <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight italic">"Referência em <br/><span class="text-brand-coral not-italic">Networking de Elite</span> no Brasil"</h2>
+                 <p class="text-zinc-400 text-lg mb-8 max-w-xl">Aunis Conecta é citada por grandes veículos como a infraestrutura definitiva de Deal-Making C-Level.</p>
+                 <div class="flex items-center gap-6 opacity-60">
+                    <span class="text-2xl font-bold font-serif text-white uppercase italic tracking-tighter">Forbes</span>
+                    <span class="text-2xl font-bold text-white tracking-tighter">Exame.</span>
+                    <span class="text-2xl font-bold text-zinc-500">Valor</span>
+                 </div>
+              </div>
+              <div class="flex-1 hidden md:block">
+                 <div class="bg-brand-gray border border-white/10 p-8 rounded-[40px] shadow-2xl rotate-3">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" class="rounded-3xl shadow-inner border border-white/5" />
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4: Expansão -->
+          <div class="swiper-slide">
+            <div class="absolute inset-0 z-0">
+               <img src="https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" />
+               <div class="absolute inset-0 bg-gradient-to-b from-brand-dark/80 via-brand-dark to-brand-black"></div>
+            </div>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-swiper-parallax="-300">
+              <h2 class="text-4xl md:text-7xl font-bold text-white mb-6 tracking-tighter">LICENCIAMENTO NACIONAL <br/><span class="text-brand-coral">EM ABERTO.</span></h2>
+              <p class="mt-4 text-xl text-zinc-300 max-w-2xl mx-auto mb-10">Leve a infraestrutura da AUNIS para sua região e domine o mercado de networking local.</p>
+              <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#expansao" class="w-full sm:w-auto bg-brand-coral hover:bg-brand-coralhover text-white px-10 py-4 rounded-full text-lg font-bold transition-all">Quero ser um Licenciado</a>
+              </div>
+            </div>
+          </div>
+
         </div>
+        <!-- Navigation -->
+        <div class="swiper-button-next hidden md:flex"></div>
+        <div class="swiper-button-prev hidden md:flex"></div>
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
       </div>
     </section>
 

@@ -1,5 +1,10 @@
 import './style.css'
 import { createIcons, Menu, Target, ShieldCheck, Linkedin, Smartphone, Briefcase, Users, CalendarDays, Gem, ConciergeBell, Quote, ArrowRight, Mic, CheckCircle, Mail, MapPin, Send, Instagram, Youtube } from 'lucide';
+import Swiper from 'swiper';
+import { Navigation, Pagination, Autoplay, Parallax } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 // Initialize Lucide Icons
 createIcons({
@@ -79,4 +84,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (acceptBtn) acceptBtn.addEventListener('click', () => hideBanner('accepted'));
   if (rejectBtn) rejectBtn.addEventListener('click', () => hideBanner('rejected'));
+
+  // Initialize Swiper Hero
+  new Swiper(".mySwiper", {
+    modules: [Navigation, Pagination, Autoplay, Parallax],
+    speed: 1000,
+    loop: true,
+    parallax: true,
+    autoplay: {
+      delay: 6000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 });
