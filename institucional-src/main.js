@@ -136,24 +136,55 @@ document.addEventListener('DOMContentLoaded', () => {
       targetSpeed = speedSlow; // Return to slow default
     });
 
-    function renderMarquee() {
-      // Smooth Braking (Lerp)
-      currentSpeed += (targetSpeed - currentSpeed) * 0.05;
-      
-      // Update Position
-      scrollPos += currentSpeed;
+    // Touch Interactions (Mobile/Tablet)
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let lastDirection = 1; // 1 for right, -1 for left
 
+    marqueeContainer.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      scrollStart = scrollPos;
+      targetSpeed = 0; // Stop auto-scroll on touch
+    }, { passive: true });
+
+    marqueeContainer.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const currentX = e.touches[0].clientX;
+      const deltaX = startX - currentX;
+      
+      // Update position manually
+      scrollPos = scrollStart + deltaX;
+      
+      // Track direction for resumption
+      lastDirection = deltaX > 0 ? 1 : -1;
+    }, { passive: true });
+
+    marqueeContainer.addEventListener('touchend', () => {
+      isDragging = false;
+      // Resume in swipe direction
+      targetSpeed = lastDirection * speedSlow;
+    });
+
+    function renderMarquee() {
+      // Smooth Acceleration/Braking (Lerp)
+      if (!isDragging) {
+        currentSpeed += (targetSpeed - currentSpeed) * 0.05;
+        scrollPos += currentSpeed;
+      }
+      
       // SEAMLESS LOOP LOGIC
-      // If moving left (positive speed) and passed the first set
       if (scrollPos >= contentWidth) {
         scrollPos = 0;
+        if (isDragging) scrollStart -= contentWidth; // Offset start for smooth drag
       }
-      // If moving right (negative speed) and passed the start
       if (scrollPos < 0) {
         scrollPos = contentWidth;
+        if (isDragging) scrollStart += contentWidth; // Offset start for smooth drag
       }
 
-      // Apply transform (Note: moving the track to the LEFT means negative translateX)
+      // Apply transform
       marqueeTrack.style.transform = `translate3d(${-scrollPos}px, 0, 0)`;
 
       requestAnimationFrame(renderMarquee);
