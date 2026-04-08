@@ -5,8 +5,8 @@ import { Calendar, MapPin, Clock, Info, Play, X, Share2, Ticket } from 'lucide-r
 const MOCK_EVENTS = [
     {
         id: 'hero-1',
-        title: "Jantar AUNIS Conecta - 2ª Ed.",
-        category: "Jantares de Negócios",
+        title: "Rodada de Negócios AUNIS - 2ª Ed.",
+        category: "Rodada de Negócios",
         date: "16 de Abril",
         time: "18:00 - 22:00",
         location: "Évora Gastronomia, Goiânia",
@@ -16,8 +16,8 @@ const MOCK_EVENTS = [
     },
     {
         id: 'dinner-1',
-        title: "Jantar de Conexões 1ª Ed.",
-        category: "Jantares de Negócios",
+        title: "Rodada de Negócios 1ª Ed.",
+        category: "Rodada de Negócios",
         date: "Março 2026",
         time: "Encerrado",
         location: "Goiânia, GO",
@@ -27,8 +27,8 @@ const MOCK_EVENTS = [
     },
     {
         id: 'dinner-2',
-        title: "Jantar AUNIS - Especial Agro",
-        category: "Jantares de Negócios",
+        title: "Rodada AUNIS - Especial Agro",
+        category: "Rodada de Negócios",
         date: "Em Breve",
         time: "A definir",
         location: "Goiânia, GO",
@@ -197,7 +197,7 @@ const EventsScreen = () => {
     const [selectedEvent, setSelectedEvent] = useState<any>(null);
 
     const heroEvent = MOCK_EVENTS[0];
-    const jantares = MOCK_EVENTS.filter(e => e.category === "Jantares de Negócios");
+    const jantares = MOCK_EVENTS.filter(e => e.category === "Rodada de Negócios");
     const imersoes = MOCK_EVENTS.filter(e => e.category === "Masterminds & Imersões");
 
     return (
@@ -266,7 +266,7 @@ const EventsScreen = () => {
             {/* Content Rails */}
             <div className="relative z-10 -mt-16 md:-mt-20">
                 <HorizontalRow 
-                    title="Jantares de Negócios" 
+                    title="Rodada de Negócios" 
                     events={jantares} 
                     onSelect={setSelectedEvent} 
                 />

@@ -8,7 +8,7 @@ const POSTS = [
         user: "Janne Abreu",
         company: "AUNIS Conecta",
         avatar: "https://i.ibb.co/MywfPQx7/Janne.jpg",
-        content: "A mesa está pronta para o Jantar de Conecta - 2ª Edição em Goiânia no Évora Gastronomia. 🥂 Quem aqui já garantiu sua cadeira para a maior rodada de negócios do mês?",
+        content: "A mesa está pronta para a Rodada de Negócios AUNIS - 2ª Edição em Goiânia no Évora Gastronomia. 🥂 Quem aqui já garantiu sua cadeira para a maior rodada de negócios do mês?",
         time: "2h",
         likes: 42,
         comments: 12

@@ -16,7 +16,7 @@ const NOTIFICATIONS = [
         id: 2,
         type: "EVENT",
         title: "Confirmado!",
-        content: "Sua vaga no Jantar AUNIS Conecta foi confirmada.",
+        content: "Sua vaga na Rodada de Negócios AUNIS foi confirmada.",
         time: "1h",
         icon: Calendar,
         color: "var(--color-gold)"
