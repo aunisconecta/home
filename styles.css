@@ -1298,6 +1298,84 @@ ul {
     height: 20px;
 }
 
+/* FAQ & Location Section */
+.faq-location-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.faq-list {
+    margin-top: 30px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-question {
+    padding: 20px 25px;
+    font-weight: 700;
+    color: var(--color-white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.faq-toggle {
+    color: var(--color-gold);
+    font-size: 1.4rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    color: var(--color-white-dim);
+    line-height: 1.6;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active {
+    border-color: var(--color-gold);
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 25px 25px;
+    max-height: 200px;
+}
+
+.faq-item.active .faq-toggle {
+    transform: rotate(45deg);
+}
+
+.location-address {
+    margin: 20px 0 30px;
+    color: var(--color-white-dim);
+    font-size: 1.1rem;
+}
+
+.map-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+@media (max-width: 900px) {
+    .faq-location-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
 /* Responsive Rules for Bento Grid and Hero */
 @media (max-width: 1024px) {
     .bento-grid {

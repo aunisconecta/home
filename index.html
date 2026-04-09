@@ -235,6 +235,43 @@
         </div>
     </section>
 
+    <!-- FAQ & Location Section -->
+    <section id="faq-location" class="section faq-location-section">
+        <div class="container faq-location-grid">
+            
+            <!-- FAQ Side -->
+            <div class="faq-container reveal">
+                <h2 class="section-title">Perguntas <span class="text-gold">Frequentes</span></h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question">O que está incluso no meu acesso? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer">Seu ingresso inclui o acesso exclusivo à Rodada de Negócios e um MENU PREMIUM completo (entrada, prato principal e sobremesa) assinado pelo Évora Gastronomia. Bebidas são cobradas à parte.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Preciso levar algo para o evento? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer">Recomendamos apenas que leve seus cartões de visita e esteja preparado para um ambiente de networking intencional e estratégico.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Como funciona a curadoria? <span class="faq-toggle">+</span></div>
+                        <div class="faq-answer">Nossos participantes são selecionados para garantir que pessoas com interesses e soluções complementares estejam sentadas lado a lado, facilitando negócios orgânicos.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Side -->
+            <div class="location-container reveal delay-1">
+                <h2 class="section-title">Localização <span class="text-gold">Premium</span></h2>
+                <p class="location-address">ÉVORA GASTRONOMIA - Av. T-11, 110 - St. Bueno, Goiânia</p>
+                <div class="map-wrapper glass-panel">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15286.736021469176!2d-49.2736466!3d-16.6926946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef0da4f51480f%3A0x6b3b55ab1c5b4e7b!2zRXZvcmEgR2FzdHJvbm9taWE!5e0!3m2!1spt-BR!2sbr!4v1712692694600!5m2!1spt-BR!2sbr" 
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Photos / Atmosphere placeholder -->
     <section class="section results-section">
         <div class="container">
@@ -359,6 +396,17 @@
                 }
             });
         }
+
+        // FAQ Interactive Logic
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>
