@@ -646,13 +646,39 @@ ul {
 }
 
 .speaker-credentials {
-    margin-top: 30px;
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
 }
 
 .speaker-credentials li {
     margin-bottom: 15px;
     font-size: 1.1rem;
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--color-white-dim);
+}
+
+.gold-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--color-gold);
+    flex-shrink: 0;
+}
+
+.icon-warning {
+    width: 8px;
+    height: 8px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    flex-shrink: 0;
 }
 
 /* Bento Grid Layout */
@@ -931,11 +957,14 @@ ul {
 }
 
 .benefit-list li::before {
-    content: '✓';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--color-gold);
-    font-weight: 900;
+    top: 20px;
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold);
+    border-radius: 50%;
 }
 
 .card-foot {
