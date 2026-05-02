@@ -156,6 +156,15 @@
             <p style="text-align: center; font-style: italic;">Após o pagamento, envie o comprovante para nosso suporte.</p>
         </div>
 
+        <!-- Botão de Confirmação via WhatsApp -->
+        <div class="payment-card reveal delay-3" style="border-color: var(--color-gold);">
+            <h3>✅ Já realizei o pagamento</h3>
+            <p>Clique no botão abaixo para nos avisar no WhatsApp. Você poderá anexar seu comprovante em seguida.</p>
+            <a href="#" id="confirmWaBtn" class="btn-payment" style="background: var(--color-black-light); border: 1px solid var(--color-gold); color: var(--color-gold);">
+                NOTIFICAR PAGAMENTO
+            </a>
+        </div>
+
         <div class="support-link">
             Precisa de ajuda? <a href="https://wa.me/5562920006723" target="_blank">Fale com o Suporte</a>
         </div>
@@ -172,6 +181,18 @@
                 }, 3000);
             });
         }
+
+        // Build WhatsApp Confirmation Link
+        document.addEventListener('DOMContentLoaded', () => {
+            const leadName = localStorage.getItem('leadName') || '';
+            const waBtn = document.getElementById('confirmWaBtn');
+            const message = leadName 
+                ? `Acabei de adquirir o ingresso, meu nome é ${leadName}`
+                : "Acabei de adquirir o ingresso";
+            
+            const waUrl = `https://wa.me/5562920006723?text=${encodeURIComponent(message)}`;
+            waBtn.href = waUrl;
+        });
 
         // Simples reveal animation
         const reveals = document.querySelectorAll('.reveal');

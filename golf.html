@@ -372,6 +372,9 @@
             const whatsapp = document.getElementById('leadWhatsApp').value;
             const btn = document.getElementById('submitLeadBtn');
             
+            // Save name for the checkout page
+            localStorage.setItem('leadName', name);
+
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
 
