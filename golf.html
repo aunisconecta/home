@@ -433,8 +433,8 @@
                 const waUrl = `https://wa.me/5562920006723?text=${waMessage}`;
                 window.open(waUrl, '_blank');
                 
-                // Refresh the current page to the top
-                window.location.reload();
+                // Redirect to the clean URL (forces top of page and removes #tickets)
+                window.location.href = window.location.pathname;
             });
         }
     </script>
