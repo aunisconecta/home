@@ -323,8 +323,8 @@
                     <label for="whatsapp">WhatsApp</label>
                     <input type="tel" id="leadWhatsApp" name="whatsapp" placeholder="Ex: (62) 99999-9999" required>
                 </div>
-                <button type="submit" id="submitLeadBtn" class="btn-premium" style="width: 100%; border: none; cursor: pointer;">
-                    CONCLUIR E IR PARA O WHATSAPP
+                <button type="submit" id="submitLeadBtn" class="btn-premium" style="width: 100%; border: none; cursor: pointer; line-height: 1.2; padding: 15px;">
+                    CONCLUIR CADASTRO E<br>IR PARA O WHATSAPP
                 </button>
             </form>
         </div>
@@ -394,8 +394,8 @@
                 headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(data)
             }).finally(() => {
-                // Redirect to WhatsApp anyway
-                const waMessage = encodeURIComponent("Olá, vim do site e quero adquirir o ingresso da Rodada de Negócios do Golfe");
+                // Redirect to WhatsApp with name in message
+                const waMessage = encodeURIComponent(`Olá, me chamo ${name}, vim do site e quero adquirir o ingresso da Rodada de Negócios do Golfe`);
                 const waUrl = `https://wa.me/5562920006723?text=${waMessage}`;
                 window.location.href = waUrl;
             });
