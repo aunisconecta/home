@@ -416,10 +416,13 @@
                 headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(data)
             }).finally(() => {
-                // Redirect to WhatsApp with name in message
+                // Open WhatsApp in a new tab
                 const waMessage = encodeURIComponent(`Olá, me chamo ${name}, vim do site e quero adquirir o ingresso da Rodada de Negócios do Golfe`);
                 const waUrl = `https://wa.me/5562920006723?text=${waMessage}`;
-                window.location.href = waUrl;
+                window.open(waUrl, '_blank');
+                
+                // Refresh the current page to the top
+                window.location.reload();
             });
         }
     </script>
