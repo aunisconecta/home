@@ -16,7 +16,7 @@ const RegisterScreen = () => {
                 <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Nome Completo</label>
                     <div className="relative">
-                        <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-dim" />
+                        <User size={18} className="absolute left-4 top-half -translate-y-half text-dim" />
                         <input type="text" placeholder="Seu Nome" className="w-full bg-surface-raised border border-glass p-4 pl-12 rounded-xl text-white outline-none focus:border-red transition-all" />
                     </div>
                 </div>
@@ -24,7 +24,7 @@ const RegisterScreen = () => {
                 <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Empresa</label>
                     <div className="relative">
-                        <Briefcase size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-dim" />
+                        <Briefcase size={18} className="absolute left-4 top-half -translate-y-half text-dim" />
                         <input type="text" placeholder="Nome da sua Empresa" className="w-full bg-surface-raised border border-glass p-4 pl-12 rounded-xl text-white outline-none focus:border-red transition-all" />
                     </div>
                 </div>
@@ -32,7 +32,7 @@ const RegisterScreen = () => {
                 <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Segmento</label>
                     <div className="relative">
-                        <Tag size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-dim" />
+                        <Tag size={18} className="absolute left-4 top-half -translate-y-half text-dim" />
                         <input type="text" placeholder="Ex: Tecnologia, Marketing..." className="w-full bg-surface-raised border border-glass p-4 pl-12 rounded-xl text-white outline-none focus:border-red transition-all" />
                     </div>
                 </div>
@@ -40,7 +40,7 @@ const RegisterScreen = () => {
                 <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest text-gold font-bold">Cidade / Estado</label>
                     <div className="relative">
-                        <MapPin size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-dim" />
+                        <MapPin size={18} className="absolute left-4 top-half -translate-y-half text-dim" />
                         <input type="text" placeholder="Sua localização" className="w-full bg-surface-raised border border-glass p-4 pl-12 rounded-xl text-white outline-none focus:border-red transition-all" />
                     </div>
                 </div>

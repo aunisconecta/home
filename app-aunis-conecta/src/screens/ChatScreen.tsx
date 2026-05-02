@@ -28,7 +28,7 @@ const ChatScreen = () => {
             <p className="text-dim text-sm mb-8 leading-relaxed">Sua linha direta com parceiros e mentores estratégicos.</p>
 
             <div className="relative mb-8">
-                <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-dim" />
+                <Search size={18} className="absolute left-4 top-half -translate-y-half text-dim" />
                 <input type="text" placeholder="Buscar conversas..." className="w-full bg-surface-raised border border-glass p-4 pl-12 rounded-2xl text-white outline-none focus:border-red transition-all" />
             </div>
 
