@@ -335,18 +335,19 @@
         </div>
     </div>
 
-    <script>
         // Force scroll to top and clear hash on load
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
-        window.addEventListener('load', () => {
-            window.scrollTo(0, 0);
-            if (window.location.hash) {
-                history.replaceState(null, null, window.location.pathname);
-            }
-        });
         window.scrollTo(0, 0);
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+                if (window.location.hash) {
+                    history.replaceState(null, null, window.location.pathname);
+                }
+            }, 10);
+        });
 
         // Reveal Animations
         function exposeReveal() {
@@ -439,8 +440,8 @@
                 headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(data)
             }).finally(() => {
-                // 5. Refresh the main page after data is sent
-                window.location.href = window.location.pathname;
+                // 5. Refresh the main page after data is sent (clean reset)
+                window.location.replace(window.location.pathname);
             });
         }
     </script>
