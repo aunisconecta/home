@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Inscrição - Rodada de Negócios & Golfe</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;500;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: var(--color-black-deep);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+        .checkout-container {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 40px;
+        }
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .checkout-logo {
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        .checkout-title {
+            font-size: 2rem;
+            color: var(--color-white);
+            margin-bottom: 10px;
+        }
+        .checkout-subtitle {
+            color: var(--color-white-dim);
+            font-size: 1.1rem;
+        }
+        .payment-card {
+            margin-bottom: 25px;
+            padding: 30px;
+            border-radius: 16px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+        .payment-card:hover {
+            border-color: var(--color-emerald-light);
+        }
+        .payment-card h3 {
+            color: var(--color-gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+        .payment-card p {
+            color: var(--color-white-dim);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        .btn-payment {
+            width: 100%;
+            padding: 18px;
+            border-radius: 8px;
+            font-weight: 800;
+            text-align: center;
+            display: block;
+            background: var(--color-emerald);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition-fast);
+        }
+        .btn-payment:hover {
+            background: var(--color-emerald-light);
+            transform: translateY(-2px);
+        }
+        .pix-code-container {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px dashed var(--glass-border);
+            margin-bottom: 15px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--color-white-dim);
+        }
+        .qr-code-img {
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto 20px;
+            display: block;
+            border-radius: 12px;
+            background: white;
+            padding: 10px;
+        }
+        .support-link {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--color-white-dim);
+            font-size: 0.9rem;
+        }
+        .support-link a {
+            color: var(--color-gold);
+            text-decoration: underline;
+        }
+        .copy-success {
+            color: var(--color-emerald-light);
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 8px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <img src="https://i.ibb.co/Kzcspycr/auniswwhi.png" alt="AUNIS Conecta" class="checkout-logo">
+            <h1 class="checkout-title">Finalize sua Inscrição</h1>
+            <p class="checkout-subtitle">Rodada de Negócios & Golfe</p>
+        </div>
+
+        <!-- Opção Cartão -->
+        <div class="payment-card reveal">
+            <h3>💳 Cartão de Crédito</h3>
+            <p>Pague em até 12x no cartão via SumUp (Seguro e Rápido).</p>
+            <a href="https://pay.sumup.com/b2c/QYLQNOYN" target="_blank" class="btn-payment">PAGAR COM CARTÃO</a>
+        </div>
+
+        <!-- Opção Pix Copia e Cola -->
+        <div class="payment-card reveal delay-1">
+            <h3>⚡ PIX Copia e Cola</h3>
+            <p>Aprovação imediata. Copie o código abaixo e utilize o "Pix Copia e Cola" no app do seu banco.</p>
+            <div class="pix-code-container" id="pixCode">00020126640014br.gov.bcb.pix0126jkabreualmeida77@gmail.com0212Aunisconecta5204000053039865406297.005802BR592561637836 JANNE KELLE DE A6007Goiania62290525SU2026050214474619011663263043F51</div>
+            <button class="btn-payment" onclick="copyPix()">COPIAR CÓDIGO PIX</button>
+            <div class="copy-success" id="copySuccess">Código copiado com sucesso!</div>
+        </div>
+
+        <!-- Opção QR Code -->
+        <div class="payment-card reveal delay-2">
+            <h3>📱 PIX QR Code</h3>
+            <p>Abra o app do seu banco e aponte a câmera para o QR Code abaixo.</p>
+            <img src="https://i.ibb.co/212X44G4/Qr-code-golfe.jpg" alt="Qr code golfe" class="qr-code-img">
+            <p style="text-align: center; font-style: italic;">Após o pagamento, envie o comprovante para nosso suporte.</p>
+        </div>
+
+        <div class="support-link">
+            Precisa de ajuda? <a href="https://wa.me/5562920006723" target="_blank">Fale com o Suporte</a>
+        </div>
+    </div>
+
+    <script>
+        function copyPix() {
+            const pixCode = document.getElementById('pixCode').innerText;
+            navigator.clipboard.writeText(pixCode).then(() => {
+                const successMsg = document.getElementById('copySuccess');
+                successMsg.style.display = 'block';
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 3000);
+            });
+        }
+
+        // Simples reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, index) => {
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 200 * index);
+        });
+    </script>
+    <style>
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+    </style>
+</body>
+</html>
