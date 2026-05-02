@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rodada de Negócios & Golf - AUNIS Conecta</title>
-    <meta name="description" content="Evento exclusivo AUNIS Conecta: Rodada de Negócios com Oficina de Golf no Portal do Sol.">
+    <title>Rodada de Negócios & Golfe - AUNIS Conecta</title>
+    <meta name="description" content="Evento exclusivo AUNIS Conecta: Rodada de Negócios com Oficina de Golfe no Portal do Sol.">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,22 +54,65 @@
             font-size: 1.2rem;
             font-weight: 600;
         }
+        
+        /* Logo Styles */
+        .hero-logo-container {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        .hero-logo {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
+        }
+        @media (max-width: 768px) {
+            .hero-logo {
+                height: 40px;
+            }
+            .hero-logo-container {
+                top: 20px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body class="bg-golf">
+    <!-- Fixed Bar -->
+    <div class="fixed-bar">
+        <div class="container">
+            <div class="nav-logo">
+                <img src="https://i.ibb.co/Kzcspycr/auniswwhi.png" alt="Aunis Conecta" border="0">
+            </div>
+            <div class="nav-actions">
+                <span class="pulse-text">Vagas Limitadíssimas!</span>
+                <a href="https://wa.me/5562920006723?text=Olá,%20vim%20do%20site%20e%20quero%20adquirir%20o%20ingresso%20da%20Rodada%20de%20Negócios%20do%20Golfe" target="_blank" id="fixed-cta-btn" class="btn btn-primary">Garantir Minha Vaga</a>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Hero Section -->
     <header class="hero-golf">
+        <!-- Logo Area -->
+        <div class="hero-logo-container reveal">
+            <div class="container">
+                <img src="https://i.ibb.co/Kzcspycr/auniswwhi.png" alt="AUNIS Conecta" class="hero-logo">
+            </div>
+        </div>
+
         <div class="container">
             <div class="hero-content reveal">
                 <div class="golf-tag">EXPERIÊNCIA EXCLUSIVA</div>
-                <h1 class="hero-tri-title">RODADA DE <br><span class="text-emerald">NEGÓCIOS & GOLF</span></h1>
+                <h1 class="hero-tri-title">RODADA DE <br><span class="text-emerald">NEGÓCIOS & GOLFE</span></h1>
                 <h2 class="hero-tri-subtitle">Onde as melhores jogadas acontecem fora do escritório.</h2>
                 
                 <div class="schedule-box">
                     <div class="schedule-item">
                         <span class="schedule-label">Localização</span>
-                        <span class="schedule-value">Portal do Sol Golf</span>
+                        <span class="schedule-value">Portal do Sol Golfe</span>
                     </div>
                     <div class="schedule-item">
                         <span class="schedule-label">Início</span>
@@ -83,7 +126,7 @@
                 </p>
 
                 <div class="hero-tri-cta-area">
-                    <a href="#tickets" class="btn-premium">
+                    <a href="https://wa.me/5562920006723?text=Olá,%20vim%20do%20site%20e%20quero%20adquirir%20o%20ingresso%20da%20Rodada%20de%20Negócios%20do%20Golfe" target="_blank" class="btn-premium">
                         <span>GARANTIR MINHA VAGA</span>
                     </a>
                 </div>
@@ -163,12 +206,12 @@
                                 <li>Café da Manhã Executivo Incluso</li>
                                 <li>Clínica de Golfe (1h30)</li>
                                 <li>Aula Prática Completa</li>
-                                <li>Networking no Portal do Sol</li>
+                                <li>Networking no Portal do Sol Golfe</li>
                                 <li>Material e Equipamentos Inclusos</li>
                             </ul>
                         </div>
                         <div class="card-foot">
-                            <a href="#" class="btn-premium">RESERVAR MINHA VAGA</a>
+                            <a href="https://wa.me/5562920006723?text=Olá,%20vim%20do%20site%20e%20quero%20adquirir%20o%20ingresso%20da%20Rodada%20de%20Negócios%20do%20Golfe" target="_blank" class="btn-premium">RESERVAR MINHA VAGA</a>
                             <p class="disclaimer">*Vagas limitadas para garantir a qualidade do ensino.</p>
                         </div>
                     </div>
@@ -182,10 +225,10 @@
         <div class="container">
             <h2 class="section-title text-center reveal">Local do <span class="text-emerald">Encontro</span></h2>
             <div class="location-container reveal" style="max-width: 800px; margin: 40px auto 0;">
-                <p class="location-address text-center">Portal do Sol Golf - O cenário perfeito para grandes decisões.</p>
+                <p class="location-address text-center">Portal do Sol Golfe - O cenário perfeito para grandes decisões.</p>
                 <div class="map-wrapper glass-panel">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3822.4419515545934!2d-49.19565572481635!3d-16.729112984050212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef7785d9994c9%3A0xe543884c75945e4d!2sPortal%20do%20Sol%20Golf!5e0!3m2!1spt-BR!2sbr!4v1714602244600!5m2!1spt-BR!2sbr" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3822.4419515545934!2d-49.19565572481635!3d-16.729112984050212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935ef7785d9994c9%3A0xe543884c75945e4d!2sPortal%20do%20Sol%20Golfe!5e0!3m2!1spt-BR!2sbr!4v1714602244600!5m2!1spt-BR!2sbr" 
                         width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
                     </iframe>
                 </div>
@@ -195,7 +238,7 @@
 
     <footer class="footer">
         <div class="container text-center reveal">
-            <p>&copy; 2026 AUNIS - Rodada de Negócios & Golf. Todos os direitos reservados.</p>
+            <p>&copy; 2026 AUNIS - Rodada de Negócios & Golfe. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -214,6 +257,16 @@
         }
         window.addEventListener("scroll", exposeReveal);
         exposeReveal();
+
+        // Nav Fixed Bar Scroll Behavior
+        const fixedBar = document.querySelector('.fixed-bar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                fixedBar.classList.add('visible');
+            } else {
+                fixedBar.classList.remove('visible');
+            }
+        });
     </script>
 </body>
 </html>
