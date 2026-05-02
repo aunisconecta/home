@@ -331,13 +331,16 @@
     </div>
 
     <script>
-        // Ensure page starts at top on load
-        window.onbeforeunload = function () {
-            window.scrollTo(0, 0);
-        };
+        // Force scroll to top and clear hash on load
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            if (window.location.hash) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+        });
         window.scrollTo(0, 0);
 
         // Reveal Animations
