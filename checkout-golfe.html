@@ -186,14 +186,23 @@
 
         // Build WhatsApp Confirmation Link
         document.addEventListener('DOMContentLoaded', () => {
-            const leadName = localStorage.getItem('leadName') || '';
             const waBtn = document.getElementById('confirmWaBtn');
-            const message = leadName 
-                ? `Acabei de adquirir o ingresso, meu nome é ${leadName}, vou te enviar o comprovante aqui agora.`
-                : "Acabei de adquirir o ingresso, vou te enviar o comprovante aqui agora.";
-            
-            const waUrl = `https://wa.me/5562920006723?text=${encodeURIComponent(message)}`;
-            waBtn.href = waUrl;
+            waBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const leadName = localStorage.getItem('leadName') || '';
+                const message = leadName 
+                    ? `Acabei de adquirir o ingresso, meu nome é ${leadName}, vou te enviar o comprovante aqui agora.`
+                    : "Acabei de adquirir o ingresso, vou te enviar o comprovante aqui agora.";
+                
+                const waUrl = `https://wa.me/5562920006723?text=${encodeURIComponent(message)}`;
+                
+                // 1. Open WhatsApp in a new tab
+                window.open(waUrl, '_blank');
+                
+                // 2. Return the current page to the main golf landing page
+                window.location.href = 'golf.html';
+            });
         });
 
         // Simples reveal animation
