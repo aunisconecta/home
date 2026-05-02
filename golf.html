@@ -356,6 +356,28 @@
             }
         });
 
+        // WhatsApp Mask
+        const whatsappInput = document.getElementById('leadWhatsApp');
+        whatsappInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            let formattedValue = '';
+            if (value.length > 0) {
+                formattedValue = '(' + value.slice(0, 2);
+                if (value.length > 2) {
+                    formattedValue += ') ' + value.slice(2, 3);
+                    if (value.length > 3) {
+                        formattedValue += '.' + value.slice(3, 7);
+                        if (value.length > 7) {
+                            formattedValue += '-' + value.slice(7, 11);
+                        }
+                    }
+                }
+            }
+            e.target.value = formattedValue;
+        });
+
         // Lead Modal Logic
         function openLeadModal() {
             document.getElementById('leadModal').classList.add('active');
