@@ -408,10 +408,16 @@
         function handleLeadSubmit(event) {
             event.preventDefault();
             
-            const name = document.getElementById('leadName').value;
+            const name = document.getElementById('leadName').value.trim();
             const whatsapp = document.getElementById('leadWhatsApp').value;
             const btn = document.getElementById('submitLeadBtn');
             
+            // Validation: Ensure there is at least a first name and a surname
+            if (name.split(' ').length < 2) {
+                alert('Por favor, preencha seu nome completo (Nome e Sobrenome).');
+                return;
+            }
+
             // 1. Save name for the checkout page
             localStorage.setItem('leadName', name);
 
