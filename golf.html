@@ -77,6 +77,75 @@
                 text-align: center;
             }
         }
+
+        /* Lead Modal Styles */
+        .lead-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .lead-modal.active {
+            display: flex;
+        }
+        .lead-modal-content {
+            background: var(--color-black-light);
+            border: 1px solid var(--color-gold);
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+        }
+        .lead-modal-title {
+            font-size: 1.8rem;
+            color: var(--color-white);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .lead-modal-subtitle {
+            color: var(--color-white-dim);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        .lead-form-group {
+            margin-bottom: 20px;
+        }
+        .lead-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .lead-form-group input {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: white;
+            font-family: var(--font-body);
+        }
+        .lead-form-group input:focus {
+            outline: none;
+            border-color: var(--color-gold);
+        }
+        .close-lead-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--color-white-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="bg-golf">
@@ -88,7 +157,7 @@
             </div>
             <div class="nav-actions">
                 <span class="pulse-text">Vagas Limitadíssimas!</span>
-                <a href="https://wa.me/5562920006723?text=Olá,%20vim%20do%20site%20e%20quero%20adquirir%20o%20ingresso%20da%20Rodada%20de%20Negócios%20do%20Golfe" target="_blank" id="fixed-cta-btn" class="btn btn-primary">Garantir Minha Vaga</a>
+                <a href="#tickets" id="fixed-cta-btn" class="btn btn-primary">Garantir Minha Vaga</a>
             </div>
         </div>
     </div>
@@ -126,7 +195,7 @@
                 </p>
 
                 <div class="hero-tri-cta-area">
-                    <a href="https://wa.me/5562920006723?text=Olá,%20vim%20do%20site%20e%20quero%20adquirir%20o%20ingresso%20da%20Rodada%20de%20Negócios%20do%20Golfe" target="_blank" class="btn-premium">
+                    <a href="#tickets" class="btn-premium">
                         <span>GARANTIR MINHA VAGA</span>
                     </a>
                 </div>
@@ -211,7 +280,7 @@
                             </ul>
                         </div>
                         <div class="card-foot">
-                            <a href="https://wa.me/5562920006723?text=Olá,%20vim%20do%20site%20e%20quero%20adquirir%20o%20ingresso%20da%20Rodada%20de%20Negócios%20do%20Golfe" target="_blank" class="btn-premium">RESERVAR MINHA VAGA</a>
+                            <button onclick="openLeadModal()" class="btn-premium">RESERVAR MINHA VAGA</button>
                             <p class="disclaimer">*Vagas limitadas para garantir a qualidade do ensino.</p>
                         </div>
                     </div>
@@ -236,11 +305,30 @@
         </div>
     </section>
 
-    <footer class="footer">
-        <div class="container text-center reveal">
-            <p>&copy; 2026 AUNIS - Rodada de Negócios & Golfe. Todos os direitos reservados.</p>
-        </div>
     </footer>
+
+    <!-- Lead Capture Modal -->
+    <div id="leadModal" class="lead-modal">
+        <div class="lead-modal-content">
+            <span class="close-lead-modal" onclick="closeLeadModal()">&times;</span>
+            <h2 class="lead-modal-title">Quase lá!</h2>
+            <p class="lead-modal-subtitle">Preencha seus dados para falarmos sobre sua participação na Rodada de Negócios & Golfe.</p>
+            
+            <form id="leadForm" onsubmit="handleLeadSubmit(event)">
+                <div class="lead-form-group">
+                    <label for="name">Nome e Sobrenome</label>
+                    <input type="text" id="leadName" name="name" placeholder="Ex: João Silva" required>
+                </div>
+                <div class="lead-form-group">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input type="tel" id="leadWhatsApp" name="whatsapp" placeholder="Ex: (62) 99999-9999" required>
+                </div>
+                <button type="submit" id="submitLeadBtn" class="btn-premium" style="width: 100%; border: none; cursor: pointer;">
+                    CONCLUIR E IR PARA O WHATSAPP
+                </button>
+            </form>
+        </div>
+    </div>
 
     <script>
         // Reveal Animations
@@ -267,6 +355,48 @@
                 fixedBar.classList.remove('visible');
             }
         });
+
+        // Lead Modal Logic
+        function openLeadModal() {
+            document.getElementById('leadModal').classList.add('active');
+        }
+
+        function closeLeadModal() {
+            document.getElementById('leadModal').classList.remove('active');
+        }
+
+        function handleLeadSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('leadName').value;
+            const whatsapp = document.getElementById('leadWhatsApp').value;
+            const btn = document.getElementById('submitLeadBtn');
+            
+            btn.innerText = "ENVIANDO...";
+            btn.disabled = true;
+
+            const data = {
+                nome: name,
+                whatsapp: whatsapp,
+                origem: 'Lead Golfe',
+                timestamp: new Date().toLocaleString('pt-BR')
+            };
+
+            // Send to Webhook (Same as form.js)
+            const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxRWEK7L16mR2DLYoECLJ_jVngK1WrPV09vn87Upo5EttEmtGnAGf1Vfuj-_cT52a3L/exec";
+            
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(data)
+            }).finally(() => {
+                // Redirect to WhatsApp anyway
+                const waMessage = encodeURIComponent("Olá, vim do site e quero adquirir o ingresso da Rodada de Negócios do Golfe");
+                const waUrl = `https://wa.me/5562920006723?text=${waMessage}`;
+                window.location.href = waUrl;
+            });
+        }
     </script>
 </body>
 </html>
