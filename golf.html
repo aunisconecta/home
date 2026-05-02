@@ -133,6 +133,7 @@
             border-radius: 8px;
             color: white;
             font-family: var(--font-body);
+            font-size: 16px !important; /* Prevents mobile zoom */
         }
         .lead-form-group input:focus {
             outline: none;
@@ -305,6 +306,10 @@
         </div>
     </section>
 
+    <footer class="footer">
+        <div class="container text-center reveal">
+            <p>&copy; 2026 AUNIS - Rodada de Negócios & Golfe. Todos os direitos reservados.</p>
+        </div>
     </footer>
 
     <!-- Lead Capture Modal -->
@@ -406,12 +411,19 @@
             const whatsapp = document.getElementById('leadWhatsApp').value;
             const btn = document.getElementById('submitLeadBtn');
             
-            // Save name for the checkout page
+            // 1. Save name for the checkout page
             localStorage.setItem('leadName', name);
 
+            // 2. Open WhatsApp IMMEDIATELY (to bypass popup blockers)
+            const waMessage = encodeURIComponent(`Olá, me chamo ${name}, vim do site e quero adquirir o ingresso da Rodada de Negócios do Golfe`);
+            const waUrl = `https://wa.me/5562920006723?text=${waMessage}`;
+            window.open(waUrl, '_blank');
+
+            // 3. UI Update
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
 
+            // 4. Background Data Sync
             const data = {
                 nome: name,
                 whatsapp: whatsapp,
@@ -419,7 +431,6 @@
                 timestamp: new Date().toLocaleString('pt-BR')
             };
 
-            // Send to Webhook (Same as form.js)
             const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbxRWEK7L16mR2DLYoECLJ_jVngK1WrPV09vn87Upo5EttEmtGnAGf1Vfuj-_cT52a3L/exec";
             
             fetch(WEBHOOK_URL, {
@@ -428,12 +439,7 @@
                 headers: { 'Content-Type': 'text/plain' },
                 body: JSON.stringify(data)
             }).finally(() => {
-                // Open WhatsApp in a new tab
-                const waMessage = encodeURIComponent(`Olá, me chamo ${name}, vim do site e quero adquirir o ingresso da Rodada de Negócios do Golfe`);
-                const waUrl = `https://wa.me/5562920006723?text=${waMessage}`;
-                window.open(waUrl, '_blank');
-                
-                // Redirect to the clean URL (forces top of page and removes #tickets)
+                // 5. Refresh the main page after data is sent
                 window.location.href = window.location.pathname;
             });
         }
