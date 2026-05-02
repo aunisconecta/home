@@ -46,7 +46,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="mobile-app-container">
             {needsNav && (
-                <header className="p-6 flex justify-between items-center bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-glass">
+                <header className="pt-10 pb-6 px-6 flex justify-between items-center bg-black/80 backdrop-blur-md sticky top-0 z-50 border-b border-glass">
                     <img src="https://i.ibb.co/Kzcspycr/auniswwhi.png" className="h-6" alt="Aunis" />
                     <div className="flex gap-4">
                         <motion.button whileTap={{ scale: 0.9 }} onClick={() => navigate('/notifications')} className="text-dim hover:text-white relative">
