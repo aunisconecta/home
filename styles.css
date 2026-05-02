@@ -2,12 +2,15 @@
 :root {
     /* Main Palette */
     --color-gold: #D6BB80;       /* Burlywood */
-    --color-gold-light: #E6CB90;
+    --color-gold-light: #F2E3C6;
     --color-gold-dark: #A08348;
     
     --color-black: #080C10;      /* Near Black */
     --color-black-deep: #040608;
     --color-black-light: #1A2834; /* Deep Space Sparkle */
+    
+    --color-emerald: #064E3B; /* Golf Theme */
+    --color-emerald-light: #10B981;
     
     --color-white: #FFFFFF;
     --color-white-dim: rgba(255, 255, 255, 0.7);
