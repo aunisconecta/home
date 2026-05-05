@@ -147,6 +147,48 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
+
+        /* Responsive Golf Page */
+        @media (max-width: 768px) {
+            .hero-golf {
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 60px;
+                text-align: center;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .schedule-box {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+                margin-top: 25px;
+            }
+            .schedule-item {
+                width: 100%;
+                max-width: 320px;
+                padding: 12px 20px;
+            }
+            .hero-tri-title {
+                font-size: 2.2rem !important;
+                line-height: 1.1;
+                margin-bottom: 15px;
+            }
+            .hero-tri-subtitle {
+                font-size: 1.1rem !important;
+                margin-bottom: 20px;
+                max-width: 100%;
+            }
+            .hero-tri-description {
+                font-size: 1.1rem;
+                margin-top: 20px !important;
+            }
+            .golf-tag {
+                margin-bottom: 15px;
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-golf">
@@ -182,7 +224,7 @@
                 <div class="schedule-box">
                     <div class="schedule-item">
                         <span class="schedule-label">Data</span>
-                        <span class="schedule-value">17/05/2026</span>
+                        <span class="schedule-value">17/05/2026 - Domingo</span>
                     </div>
                     <div class="schedule-item">
                         <span class="schedule-label">Localização</span>
